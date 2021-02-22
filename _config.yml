@@ -3,11 +3,11 @@
 ## Source: https://github.com/hexojs/hexo/
 
 # Site
-title: Hexo
-subtitle: ''
-description: ''
+title: Hsiacool'blog
+subtitle: 'Think twice,code once.'
+description: 'Think twice,code once.'
 keywords:
-author: John Doe
+author: Hsiacool
 language: en
 timezone: ''
 
@@ -104,5 +104,5 @@ theme: cicada
 ## Docs: https://hexo.io/docs/one-command-deployment
 deploy:
   type: 'git'
-  repo: https://github.com/hsiacool/hsiacool.github.io
-  branch: master
+  repo: git@github.com:hsiacool/hsiacool.github.io.git
+  branch: main
