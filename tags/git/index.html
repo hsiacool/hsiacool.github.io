@@ -1,6 +1,6 @@
 
 
-<html lang="en">
+<html lang="zh-CN">
   <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -37,7 +37,7 @@
   
 
   <script>
-    window.config = {"favicon":"/images/favicon.ico","menu":{"home":"/","archives":"/archives","tags":"/tags","categories":"/categories"},"show_tag":true,"show_category":true,"highlight":"atom-one-light","excerpt_link":"Read More","fancybox":true,"disqus_shortname":null,"rss":"default","google_analytics":null,"portfolio":{"subtitle":"Some Works","cards":{"card1":{"cover":"/images/screenshot.png","content":"Cicada is a concise and retro Hexo theme.","link":"https://github.com/Kexin-Li/hexo-theme-cicada"},"card2":{"cover":"/images/screenshot.png","content":"Cicada is a Hexo theme, it tastes like summer.","link":"http://kexin-li.github.io"},"card3":{"cover":"/images/screenshot.png","content":"Cicada is a Hexo theme, it tastes like summer.","link":"http://kexin-li.github.io"}}},"about":null,"subtitle":"About Me","poem":false};
+    window.config = {"favicon":"/images/favicon.ico","language":"zh-CN","menu":{"home":"/","archives":"/archives","tags":"/tags","categories":"/categories"},"show_tag":true,"show_category":true,"highlight":"atom-one-light","excerpt_link":"Read More","fancybox":true,"disqus_shortname":null,"rss":"default","google_analytics":null,"portfolio":{"subtitle":"Some Works","cards":{"card1":{"cover":"/images/screenshot.png","content":"Cicada is a concise and retro Hexo theme.","link":"https://github.com/Kexin-Li/hexo-theme-cicada"},"card2":{"cover":"/images/screenshot.png","content":"Cicada is a Hexo theme, it tastes like summer.","link":"http://kexin-li.github.io"},"card3":{"cover":"/images/screenshot.png","content":"Cicada is a Hexo theme, it tastes like summer.","link":"http://kexin-li.github.io"}}},"about":null,"subtitle":"About Me","poem":false};
   </script>
 <meta name="generator" content="Hexo 5.4.0"></head>
   <body>
@@ -49,13 +49,13 @@
     <ul>
       <li class="title"><a href="/">Hsiacool&#39;blog</a></li>
       
-        <li class="nav-item"><a href="/">Home</a></li>
+        <li class="nav-item"><a href="/">首页</a></li>
       
-        <li class="nav-item"><a href="/archives">Archives</a></li>
+        <li class="nav-item"><a href="/archives">归档</a></li>
       
-        <li class="nav-item"><a href="/tags">Tags</a></li>
+        <li class="nav-item"><a href="/tags">标签</a></li>
       
-        <li class="nav-item"><a href="/categories">Categories</a></li>
+        <li class="nav-item"><a href="/categories">分类</a></li>
       
     </ul>
   </nav>
@@ -64,13 +64,13 @@
 
     <nav id="menu">
   
-    <a href="/">Home</a>
+    <a href="/">首页</a>
   
-    <a href="/archives">Archives</a>
+    <a href="/archives">归档</a>
   
-    <a href="/tags">Tags</a>
+    <a href="/tags">标签</a>
   
-    <a href="/categories">Categories</a>
+    <a href="/categories">分类</a>
   
 </nav>
     
@@ -96,7 +96,7 @@
     <div class="post-detail">
       
         <p>今天事情不多，对git 做一个总结，都是比较常规的用法，日常操作应该是够了<br><img src="https://img-blog.csdnimg.cn/20190426154538504.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3Nvbmdoc2lh,size_16,color_FFFFFF,t_70"></p>
-<p>一、常用命令<br>查看当前所有分支 git branch –all<br>创建dev分支，然后切换到dev分支：</p>
+<h3 id="一、常用命令"><a href="#一、常用命令" class="headerlink" title="一、常用命令"></a>一、常用命令</h3><p>查看当前所有分支 git branch –all<br>创建dev分支，然后切换到dev分支：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git checkout -b dev</span><br></pre></td></tr></table></figure>
 <p>其中git checkout命令加上-b参数表示创建并切换，相当于以下两条命令：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git branch dev</span><br><span class="line">git checkout dev   &#x2F;&#x2F;只切换分支</span><br></pre></td></tr></table></figure>
@@ -105,23 +105,21 @@
 <p>查看当前状态：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git status</span><br></pre></td></tr></table></figure>
 
-<p>二、合并别人的远程分支<br>前提：保证两个分支暂存区无内容</p>
+<h3 id="二、合并别人的远程分支"><a href="#二、合并别人的远程分支" class="headerlink" title="二、合并别人的远程分支"></a>二、合并别人的远程分支</h3><p>前提：保证两个分支暂存区无内容</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">git checkout hsia   &#x2F;&#x2F;切换到hsia分支</span><br><span class="line">git pull   &#x2F;&#x2F;拉取代码</span><br><span class="line">git merge origin&#x2F;hf</span><br></pre></td></tr></table></figure>
 
-<p>三、新建分支并关联到远程</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git checkout -b dev</span><br><span class="line">git push --set-upstream origin dev</span><br></pre></td></tr></table></figure>
+<h3 id="三、新建分支并关联到远程"><a href="#三、新建分支并关联到远程" class="headerlink" title="三、新建分支并关联到远程"></a>三、新建分支并关联到远程</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git checkout -b dev</span><br><span class="line">git push --set-upstream origin dev</span><br></pre></td></tr></table></figure>
 
-<p>四、远程分支拉到本地</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git pull origin dev</span><br></pre></td></tr></table></figure>
+<h3 id="四、远程分支拉到本地"><a href="#四、远程分支拉到本地" class="headerlink" title="四、远程分支拉到本地"></a>四、远程分支拉到本地</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git pull origin dev</span><br></pre></td></tr></table></figure>
 
-<p>五、在A分支修改的内容需要提交到B分支，且A分支不做同步<br>（1）通过git stash将工作区恢复到上次提交的内容，同时备份本地所做的修改</p>
+<h3 id="五、在A分支修改的内容需要提交到B分支，且A分支不做同步"><a href="#五、在A分支修改的内容需要提交到B分支，且A分支不做同步" class="headerlink" title="五、在A分支修改的内容需要提交到B分支，且A分支不做同步"></a>五、在A分支修改的内容需要提交到B分支，且A分支不做同步</h3><p>（1）通过git stash将工作区恢复到上次提交的内容，同时备份本地所做的修改</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git stash</span><br></pre></td></tr></table></figure>
 <p>（2）然后切换至B分支</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git checkout B</span><br></pre></td></tr></table></figure>
 <p>（3）从git栈中获取到最近一次stash进去的内容，恢复工作区的内容，获取之后，会删除栈中对应的stash</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git stash pop</span><br></pre></td></tr></table></figure>
 <p>（4）进行正常的提交代码步骤即可</p>
-<p>六、已有仓库连接至远程git<br>在本地初始化git仓库</p>
+<h3 id="六、已有仓库连接至远程git"><a href="#六、已有仓库连接至远程git" class="headerlink" title="六、已有仓库连接至远程git"></a>六、已有仓库连接至远程git</h3><p>在本地初始化git仓库</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git init</span><br></pre></td></tr></table></figure>
 <p>新增远程仓库上游</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git remote add origin 仓库地址</span><br></pre></td></tr></table></figure>
@@ -132,6 +130,11 @@
 <p>上传至远程仓库</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git push --set-upstream origin master</span><br></pre></td></tr></table></figure>
 <p>完成，至此项目已推送至远程，并且本地与远程仓库建立了连接。</p>
+<h3 id="七、使用https方式克隆远程https库时，出现了每次进行git操作都要验证账号密码的情况"><a href="#七、使用https方式克隆远程https库时，出现了每次进行git操作都要验证账号密码的情况" class="headerlink" title="七、使用https方式克隆远程https库时，出现了每次进行git操作都要验证账号密码的情况"></a>七、使用https方式克隆远程https库时，出现了每次进行git操作都要验证账号密码的情况</h3><p>原因是在添加远程库的时候使用了https的方式，所以每次都要用https的方式操作远程库<br>解决方案：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"># 查看使用的传输协议:</span><br><span class="line">git remote -v</span><br></pre></td></tr></table></figure>
+<p>origin <a target="_blank" rel="noopener" href="https://github.com/XXXX/XXXX.git">https://github.com/XXXX/XXXX.git</a> (fetch)<br>origin <a target="_blank" rel="noopener" href="https://github.com/XXXX/XXXX.git">https://github.com/XXXX/XXXX.git</a> (push)<br>此时可以确定是https传输<br>重新设置成ssh的方式:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">git remote rm origin</span><br><span class="line">git remote add origin ssh地址</span><br><span class="line">git push -u origin 分支名</span><br></pre></td></tr></table></figure>
+<p>设置好了之后再看当前传输协议：<br>origin <a href="mailto:&#103;&#105;&#116;&#64;&#x67;&#x69;&#x74;&#x68;&#x75;&#x62;&#46;&#99;&#x6f;&#x6d;">&#103;&#105;&#116;&#64;&#x67;&#x69;&#x74;&#x68;&#x75;&#x62;&#46;&#99;&#x6f;&#x6d;</a>:XXXX/XXXX.git (fetch)<br>origin <a href="mailto:&#x67;&#x69;&#116;&#x40;&#x67;&#105;&#x74;&#104;&#117;&#x62;&#x2e;&#x63;&#x6f;&#109;">&#x67;&#x69;&#116;&#x40;&#x67;&#105;&#x74;&#104;&#117;&#x62;&#x2e;&#x63;&#x6f;&#109;</a>:XXXX/XXXX.git (push)<br>已经变成ssh方式</p>
 <p>同时推荐一下使用的脑图软件：MindMaster ，非常好用</p>
 
         <hr>

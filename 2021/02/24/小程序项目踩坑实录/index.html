@@ -59,7 +59,7 @@
       
     </ul>
   </nav>
-  <h1 class="subtitle"><span id='jinrishici-sentence'>CATEGORY: 读书笔记</span></h1>
+  <h1 class="subtitle"><span id='jinrishici-sentence'>Think twice,code once.</span></h1>
 </header>
 
     <nav id="menu">
@@ -75,8 +75,7 @@
 </nav>
     
     <main class="blog-main" style="margin-top: -150px">
-      
-    <article class="blog-post">
+      <article class="blog-post">
   
 
   <div class="post-content">
@@ -85,37 +84,63 @@
         
   
     <h1 class="post-title">
-      <a href="/2021/02/23/css揭秘读书笔记/">
-        css揭秘读书笔记
+      <a href="/2021/02/24/小程序项目踩坑实录/">
+        小程序项目踩坑实录
       </a>
     </h1>
   
+
+<div class="post-meta">
+  2021-02-24
+  
+  
+    
+
+
+  <span> | </span>
+  <a class="meta-category" href="/categories/教程与记录/">教程与记录</a>
+
+  
+</div>
 
       
     </div>
     <div class="post-detail">
       
-        <p>1.transform带来的元素模糊问题</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">transform-style:preserve-3d;</span><br></pre></td></tr></table></figure>
-<p>2.定宽定高元素的垂直水平居中简化写法</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">width:0.96rem;</span><br><span class="line">height:0.96rem;</span><br><span class="line">position: absolute;</span><br><span class="line">top:calc(50% - 0.48rem);</span><br><span class="line">left:calc(50% - 0.48rem);</span><br></pre></td></tr></table></figure>
-<p>3.布局高度在一屏以内之footer吸底（当body高度大于一屏幕失效）</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">&lt;body&gt;</span><br><span class="line">    &lt;header&gt;&lt;&#x2F;header&gt;</span><br><span class="line">    &lt;main&gt;&lt;&#x2F;main&gt;</span><br><span class="line">    &lt;footer&gt;&lt;&#x2F;footer&gt;</span><br><span class="line">&lt;&#x2F;body&gt;</span><br><span class="line">body&#123;</span><br><span class="line">    display:flex;</span><br><span class="line">    min-height:100vh;</span><br><span class="line">    flex-flow:column;</span><br><span class="line">&#125;</span><br><span class="line">main&#123;</span><br><span class="line">    flex:1</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>在总高度固定的情况下，flex:1则main拥有了除去底部footer高度之外的所有高度。<br>4.min-content：采用内部元素最小宽度值最大的那个元素的宽度作为最终容器的宽度<br>5.用box-shadow实现多重边框</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;*重点在于box-shadow可以设置多个值*&#x2F;</span><br><span class="line">div &#123;</span><br><span class="line">	width: 100px;</span><br><span class="line">	height: 60px;</span><br><span class="line">	margin: 25px;</span><br><span class="line">	background: yellowgreen;</span><br><span class="line">	box-shadow: 0 0 0 10px #655,</span><br><span class="line">            0 0 0 15px deeppink,</span><br><span class="line">            0 2px 5px 15px rgba(0,0,0,.6);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+        <h3 id="1-拼接字符串转时间戳，设备不同方法不同"><a href="#1-拼接字符串转时间戳，设备不同方法不同" class="headerlink" title="1.拼接字符串转时间戳，设备不同方法不同"></a>1.拼接字符串转时间戳，设备不同方法不同</h3><p>在pc和android上以’-‘拼接，在ios上以’/‘拼接</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">if (that.data.systemInfo.platform &#x3D;&#x3D; &quot;ios&quot;) &#123;</span><br><span class="line">  var q &#x3D; that.data.year + &#39;&#x2F;&#39; + that.data.month + &#39;&#x2F;&#39; + that.data.day + &#39; &#39; + that.data.timestamp;</span><br><span class="line">&#125; else &#123;</span><br><span class="line">  var q &#x3D; that.data.year + &#39;-&#39; + that.data.month+ &#39;-&#39; + that.data.day+ &#39; &#39; + that.data.timestamp;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
         <hr>
       
     </div>
 
     
+      
+    
 
+    
+      
+  
+  
+  <div class="post-tags">
+    <a href="/tags/小程序/">#小程序</a>
+  </div>
+  <hr>
+  
+
+      <div class="post-more">
+  
+  
+  <div class="post-next">
+    <span>下一篇</span>
+    <a href="/2021/02/24/vue%E9%A1%B9%E7%9B%AE%E8%B8%A9%E5%9D%91%E5%AE%9E%E5%BD%95/">vue项目踩坑实录</a>
+  </div>
+  
+</div>
+      
     
   </div>
 </article>
-
-
-
 
     </main>
     

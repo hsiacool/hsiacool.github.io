@@ -1,6 +1,6 @@
 
 
-<html lang="en">
+<html lang="zh-CN">
   <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -37,7 +37,7 @@
   
 
   <script>
-    window.config = {"favicon":"/images/favicon.ico","menu":{"home":"/","archives":"/archives","tags":"/tags","categories":"/categories"},"show_tag":true,"show_category":true,"highlight":"atom-one-light","excerpt_link":"Read More","fancybox":true,"disqus_shortname":null,"rss":"default","google_analytics":null,"portfolio":{"subtitle":"Some Works","cards":{"card1":{"cover":"/images/screenshot.png","content":"Cicada is a concise and retro Hexo theme.","link":"https://github.com/Kexin-Li/hexo-theme-cicada"},"card2":{"cover":"/images/screenshot.png","content":"Cicada is a Hexo theme, it tastes like summer.","link":"http://kexin-li.github.io"},"card3":{"cover":"/images/screenshot.png","content":"Cicada is a Hexo theme, it tastes like summer.","link":"http://kexin-li.github.io"}}},"about":null,"subtitle":"About Me","poem":false};
+    window.config = {"favicon":"/images/favicon.ico","language":"zh-CN","menu":{"home":"/","archives":"/archives","tags":"/tags","categories":"/categories"},"show_tag":true,"show_category":true,"highlight":"atom-one-light","excerpt_link":"Read More","fancybox":true,"disqus_shortname":null,"rss":"default","google_analytics":null,"portfolio":{"subtitle":"Some Works","cards":{"card1":{"cover":"/images/screenshot.png","content":"Cicada is a concise and retro Hexo theme.","link":"https://github.com/Kexin-Li/hexo-theme-cicada"},"card2":{"cover":"/images/screenshot.png","content":"Cicada is a Hexo theme, it tastes like summer.","link":"http://kexin-li.github.io"},"card3":{"cover":"/images/screenshot.png","content":"Cicada is a Hexo theme, it tastes like summer.","link":"http://kexin-li.github.io"}}},"about":null,"subtitle":"About Me","poem":false};
   </script>
 <meta name="generator" content="Hexo 5.4.0"></head>
   <body>
@@ -49,13 +49,13 @@
     <ul>
       <li class="title"><a href="/">Hsiacool&#39;blog</a></li>
       
-        <li class="nav-item"><a href="/">Home</a></li>
+        <li class="nav-item"><a href="/">首页</a></li>
       
-        <li class="nav-item"><a href="/archives">Archives</a></li>
+        <li class="nav-item"><a href="/archives">归档</a></li>
       
-        <li class="nav-item"><a href="/tags">Tags</a></li>
+        <li class="nav-item"><a href="/tags">标签</a></li>
       
-        <li class="nav-item"><a href="/categories">Categories</a></li>
+        <li class="nav-item"><a href="/categories">分类</a></li>
       
     </ul>
   </nav>
@@ -64,18 +64,142 @@
 
     <nav id="menu">
   
-    <a href="/">Home</a>
+    <a href="/">首页</a>
   
-    <a href="/archives">Archives</a>
+    <a href="/archives">归档</a>
   
-    <a href="/tags">Tags</a>
+    <a href="/tags">标签</a>
   
-    <a href="/categories">Categories</a>
+    <a href="/categories">分类</a>
   
 </nav>
     
     <main class="blog-main" style="margin-top: -150px">
       
+    <article class="blog-post">
+  
+
+  <div class="post-content">
+    <div class="post-header">
+      
+        
+  
+    <h1 class="post-title">
+      <a href="/2021/02/24/小程序项目踩坑实录/">
+        小程序项目踩坑实录
+      </a>
+    </h1>
+  
+
+      
+    </div>
+    <div class="post-detail">
+      
+        <h3 id="1-拼接字符串转时间戳，设备不同方法不同"><a href="#1-拼接字符串转时间戳，设备不同方法不同" class="headerlink" title="1.拼接字符串转时间戳，设备不同方法不同"></a>1.拼接字符串转时间戳，设备不同方法不同</h3><p>在pc和android上以’-‘拼接，在ios上以’/‘拼接</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">if (that.data.systemInfo.platform &#x3D;&#x3D; &quot;ios&quot;) &#123;</span><br><span class="line">  var q &#x3D; that.data.year + &#39;&#x2F;&#39; + that.data.month + &#39;&#x2F;&#39; + that.data.day + &#39; &#39; + that.data.timestamp;</span><br><span class="line">&#125; else &#123;</span><br><span class="line">  var q &#x3D; that.data.year + &#39;-&#39; + that.data.month+ &#39;-&#39; + that.data.day+ &#39; &#39; + that.data.timestamp;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+        <hr>
+      
+    </div>
+
+    
+
+    
+  </div>
+</article>
+
+
+    <article class="blog-post">
+  
+
+  <div class="post-content">
+    <div class="post-header">
+      
+        
+  
+    <h1 class="post-title">
+      <a href="/2021/02/24/vue项目踩坑实录/">
+        vue项目踩坑实录
+      </a>
+    </h1>
+  
+
+      
+    </div>
+    <div class="post-detail">
+      
+        <h3 id="1-项目中使用了sass，然而在进行打包时未成功，报错显示-unknown-word"><a href="#1-项目中使用了sass，然而在进行打包时未成功，报错显示-unknown-word" class="headerlink" title="1.项目中使用了sass，然而在进行打包时未成功，报错显示 unknown word"></a>1.项目中使用了sass，然而在进行打包时未成功，报错显示 unknown word</h3><p>经查，写代码时不小心使用了//注释方式，经过webpack.prod.config.js的代码压缩，就造成了语法错误的情况，代码里尽量不要使用//这种注释方法</p>
+<h3 id="2-图片放到线上发现无法显示"><a href="#2-图片放到线上发现无法显示" class="headerlink" title="2.图片放到线上发现无法显示"></a>2.图片放到线上发现无法显示</h3><p>1.图片路径的问题，可以查一下打包文件build/utils.js里的publicPath问题<br>2.访问路径的问题，查一下config/index.js文件，可能是文件层级问题，将绝对路径assetsPublicPath: ‘/‘改为相对路径assetsPublicPath: ‘./‘</p>
+<h3 id="3-webpack打包去掉console-log"><a href="#3-webpack打包去掉console-log" class="headerlink" title="3.webpack打包去掉console.log"></a>3.webpack打包去掉console.log</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F;webpack.prod.conf.js</span><br><span class="line">new UglifyJsPlugin(&#123;</span><br><span class="line">  uglifyOptions: &#123;</span><br><span class="line">    compress: &#123;</span><br><span class="line">      warnings: false,</span><br><span class="line">      drop_debugger: true,</span><br><span class="line">      drop_console: true &#x2F;&#x2F;更改此行为true</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;,</span><br><span class="line">  sourceMap: config.build.productionSourceMap,</span><br><span class="line">  parallel: true</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+
+<h3 id="4-当页面中有定时器时，离开页面需要手动销毁定时器"><a href="#4-当页面中有定时器时，离开页面需要手动销毁定时器" class="headerlink" title="4.当页面中有定时器时，离开页面需要手动销毁定时器"></a>4.当页面中有定时器时，离开页面需要手动销毁定时器</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">const getNow &#x3D; setInterval(() &#x3D;&gt;&#123;</span><br><span class="line">    setTimeout(function()&#123;</span><br><span class="line">      that.getNowTime();</span><br><span class="line">    &#125;,0)</span><br><span class="line">&#125;, 1000);</span><br><span class="line">that.$once(&#39;hook:beforeDestroy&#39;, () &#x3D;&gt; &#123;</span><br><span class="line">    clearInterval(getNow);</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+
+<h3 id="5-vue-cli2和vue-cli3的区别"><a href="#5-vue-cli2和vue-cli3的区别" class="headerlink" title="5.vue-cli2和vue-cli3的区别"></a>5.vue-cli2和vue-cli3的区别</h3><p>1.包名称由vue-cli改成了@vue/cli<br>2.vue-cli3继承了webpack，使用vue-cli3创建的项目在配置webpack的时候可以直接在vue.config.js里面配置</p>
+<h3 id="6-项目中引入了node-sass，后和同事统一了node版本，项目报错"><a href="#6-项目中引入了node-sass，后和同事统一了node版本，项目报错" class="headerlink" title="6.项目中引入了node-sass，后和同事统一了node版本，项目报错"></a>6.项目中引入了node-sass，后和同事统一了node版本，项目报错</h3><p>原因：node-sass依赖于node，故更新node也要更新node-sass<br>这里记录一下node-sass，sass-loader，style-loader三个的关系：<br>sass-loader：加载sass/scss, 并且把sass/scss编译成css,依赖于node-sass,所以使用时要先下载node-sass<br>style-loader（官方封装了vue-style-loader）：将JS字符串生成为style节点、将样式插入到style标签<br>css-loader（自带）：将CSS转化成CommonJS模块，例如url转为require等</p>
+<h3 id="7-配置404页面"><a href="#7-配置404页面" class="headerlink" title="7.配置404页面"></a>7.配置404页面</h3><p>需要注意放在所有路由的最后</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">path: &#39;*&#39;,</span><br><span class="line">name: &#39;404&#39;,</span><br><span class="line">component: () &#x3D;&gt; import(&#39;..&#x2F;views&#x2F;404.vue&#39;)</span><br></pre></td></tr></table></figure>
+
+<h3 id="8-切换路由时，要把之前页面的内容留存"><a href="#8-切换路由时，要把之前页面的内容留存" class="headerlink" title="8.切换路由时，要把之前页面的内容留存"></a>8.切换路由时，要把之前页面的内容留存</h3><p>1.使用keep-alive<br>2.在beforeRouteLeave里进行处理</p>
+
+        <hr>
+      
+    </div>
+
+    
+
+    
+  </div>
+</article>
+
+
+    <article class="blog-post">
+  
+
+  <div class="post-content">
+    <div class="post-header">
+      
+        
+  
+    <h1 class="post-title">
+      <a href="/2021/02/24/移动端适配/">
+        移动端适配
+      </a>
+    </h1>
+  
+
+      
+    </div>
+    <div class="post-detail">
+      
+        <h2 id="一、flexible-js"><a href="#一、flexible-js" class="headerlink" title="一、flexible.js"></a>一、flexible.js</h2><p>dpr:设备像素比<br>物理像素:设备像素，他是显示设备中一个最微小的物理部件，实际存在<br>设备独立像素：密度无关像素，可以认为是计算机坐标系统中的一个点，这个点代表一个可以由程序使用的虚拟像素(比如说CSS像素)<br>不同的设备dpr不同，设备像素比dpr ＝ 物理像素 / 设备独立像素</p>
+<p>在Flexible中，只对iOS设备进行dpr的判断，对于Android系列，始终认为其dpr为1，font-size的基准值根据dpr设定<br>设计图上的元素px/基准值 = 页面上实际的rem</p>
+<p>1.安装lib-flexible</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install lib-flexible --save</span><br></pre></td></tr></table></figure>
+
+<p>2.全局引入lib-flexible</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F;main.js</span><br><span class="line">import &#39;lib-flexible&#x2F;flexible.js&#39;</span><br></pre></td></tr></table></figure>
+
+<p>3.删除meta name=”viewport”标签，使用lib-flexible自动生成的meta标签</p>
+<p>4.使用postcss-px2rem-exclude自动将css中的px转换成rem</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install postcss-px2rem-exclude --save</span><br></pre></td></tr></table></figure>
+
+<p>5.配置 postcss-px2rem-exclude<br>但是一般做项目的时候会引入ui库，如果不想ui库里的样式也跟着lib-flexible改变，可以使用postcss-px2rem-exclude去忽略ui库里的文件</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F;.postcssrc.js：</span><br><span class="line">module.exports &#x3D; &#123;</span><br><span class="line">  &quot;plugins&quot;: &#123;</span><br><span class="line">    &#x2F;&#x2F; to edit target browsers: use &quot;browserslist&quot; field in package.json</span><br><span class="line">    &quot;postcss-import&quot;: &#123;&#125;,</span><br><span class="line">    &quot;autoprefixer&quot;: &#123;&#125;,</span><br><span class="line">    &quot;postcss-px2rem-exclude&quot;: &#123;  &#x2F;&#x2F; 添加的代码</span><br><span class="line">      remUnit: 75,&#x2F;&#x2F;人为设置iphone6的font-size</span><br><span class="line">      exclude: &#x2F;node_modules|folder_name&#x2F;i &#x2F;&#x2F; 忽略node_modules目录下的文件</span><br><span class="line">      &#x2F;&#x2F;include - 字符串或正则表达式，只有名称匹配的组件会被匹配</span><br><span class="line">      &#x2F;&#x2F;exclude - 字符串或正则表达式，任何名称匹配的组件都不会被匹配</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>remUnit = 设计图总宽度/10</p>
+<h3 id="注意："><a href="#注意：" class="headerlink" title="注意："></a>注意：</h3><p>1.需要忽略node_modules目录下的文件，这样可以避免引入的ui库样式变形<br>2.此方法只能将.vue文件style标签中的px转成rem，不能将script标签和元素style里面定义的px转成rem<br>3.如果在.vue文件style中的某一行代码不希望被转成rem，只要在后面写上注释 /* no*/就可以了<br>4.字体不使用rem</p>
+<p>问题：<br>1.根据dpr如何设置font-size</p>
+
+        <hr>
+      
+    </div>
+
+    
+
+    
+  </div>
+</article>
+
+
     <article class="blog-post">
   
 
@@ -131,11 +255,9 @@
     <div class="post-detail">
       
         <p>本篇主要理解和总结一下js运行相关的微任务、宏任务、async、await和Eventloop</p>
-<p>这些出现的前提是js为单线程语言，这里的单线程是指在JS引擎中负责解释和执行JavaScript代码的线程只有一个，也叫主线程。js主要被用来与用户互动，操作dom，如果多线程去操作同一个dom容易出现问题。<br>那么cpu处理必然会出现排队等待的情况，此时任务可分为同步任务和异步任务，主线程去立即执行同步任务，当遇到异步任务时，主线程发出一个异步I/O请求，这个请求被传递给设备驱动程序，由后者负责完成实际的I/O操作，当I/O处理完之后，再将拿到结果的回调函数放到任务队列。<br>如果此任务是宏任务，放到macro task队列中，如果是微任务，放到micro task队列中。简单判断：<br>微任务：<br>1.有Promise，async，await</p>
-<h3 id="2-执行时机早，在DOM渲染前触发"><a href="#2-执行时机早，在DOM渲染前触发" class="headerlink" title="2.执行时机早，在DOM渲染前触发"></a>2.执行时机早，在DOM渲染前触发</h3><p>3.是由ES6语法规定的<br>宏任务：<br>1.有setTimeout，setInterval，Ajax，DOM</p>
-<h3 id="2-执行时机晚，在DOM渲染后触发"><a href="#2-执行时机晚，在DOM渲染后触发" class="headerlink" title="2.执行时机晚，在DOM渲染后触发"></a>2.执行时机晚，在DOM渲染后触发</h3><p>3.是由浏览器W3C规定的</p>
+<p>这些出现的前提是js为单线程语言，这里的单线程是指在JS引擎中负责解释和执行JavaScript代码的线程只有一个，也叫主线程。js主要被用来与用户互动，操作dom，如果多线程去操作同一个dom容易出现问题。<br>那么cpu处理必然会出现排队等待的情况，此时任务可分为同步任务和异步任务，主线程去立即执行同步任务，形成一个执行栈。在主线程之外，有一个任务队列，当遇到异步任务时，主线程发出一个异步I/O请求，这个请求被传递给设备驱动程序，由后者负责完成实际的I/O操作，当I/O处理完之后，再将拿到结果的回调函数放到任务队列。<br>如果此任务是宏任务，放到macro task队列中，如果是微任务，放到micro task队列中。简单判断：<br>微任务：<br>1.有Promise，async，await<br>2.执行时机早，在DOM渲染前触发<br>3.是由ES6语法规定的<br>宏任务：<br>1.有setTimeout，setInterval，Ajax，DOM<br>2.执行时机晚，在DOM渲染后触发<br>3.是由浏览器W3C规定的</p>
 <p>当所有的同步任务都执行完毕后，主线程就会进入任务队列查看异步任务，每次主线程去任务队列读取异步任务的过程就是事件循环，然后异步任务进入主线程执行，这时会先执行微任务的micro task队列，尝试dom渲染，继续事件循环，执行宏任务macro task队列。</p>
-<h3 id="注意："><a href="#注意：" class="headerlink" title="注意："></a>注意：</h3><p>1.new定义的promise会被立即执行<br>2.async()是函数执行代码，会立即执行，then()是异步标志，会记录为微任务之后执行<br>3.await后面的代码都会作为异步回调函数来执行</p>
+<h3 id="注意："><a href="#注意：" class="headerlink" title="注意："></a>注意：</h3><p>1.new定义的promise会被立即执行<br>2.async()是函数执行代码，会立即执行，then()是异步标志，会记录为微任务之后执行<br>3.await后面的代码都会作为异步回调函数来执行<br>4.setTimeout()此行代码执行时只是将事件插入了任务队列，必须等到当前代码（执行栈）执行完，主线程才会去执行它指定的回调函数。要是当前代码耗时很长，有可能要等很久，所以并没有办法保证，回调函数一定会在setTimeout()指定的时间执行</p>
 
         <hr>
       
@@ -322,7 +444,7 @@
     <div class="post-detail">
       
         <p>今天事情不多，对git 做一个总结，都是比较常规的用法，日常操作应该是够了<br><img src="https://img-blog.csdnimg.cn/20190426154538504.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3Nvbmdoc2lh,size_16,color_FFFFFF,t_70"></p>
-<p>一、常用命令<br>查看当前所有分支 git branch –all<br>创建dev分支，然后切换到dev分支：</p>
+<h3 id="一、常用命令"><a href="#一、常用命令" class="headerlink" title="一、常用命令"></a>一、常用命令</h3><p>查看当前所有分支 git branch –all<br>创建dev分支，然后切换到dev分支：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git checkout -b dev</span><br></pre></td></tr></table></figure>
 <p>其中git checkout命令加上-b参数表示创建并切换，相当于以下两条命令：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git branch dev</span><br><span class="line">git checkout dev   &#x2F;&#x2F;只切换分支</span><br></pre></td></tr></table></figure>
@@ -331,23 +453,21 @@
 <p>查看当前状态：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git status</span><br></pre></td></tr></table></figure>
 
-<p>二、合并别人的远程分支<br>前提：保证两个分支暂存区无内容</p>
+<h3 id="二、合并别人的远程分支"><a href="#二、合并别人的远程分支" class="headerlink" title="二、合并别人的远程分支"></a>二、合并别人的远程分支</h3><p>前提：保证两个分支暂存区无内容</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">git checkout hsia   &#x2F;&#x2F;切换到hsia分支</span><br><span class="line">git pull   &#x2F;&#x2F;拉取代码</span><br><span class="line">git merge origin&#x2F;hf</span><br></pre></td></tr></table></figure>
 
-<p>三、新建分支并关联到远程</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git checkout -b dev</span><br><span class="line">git push --set-upstream origin dev</span><br></pre></td></tr></table></figure>
+<h3 id="三、新建分支并关联到远程"><a href="#三、新建分支并关联到远程" class="headerlink" title="三、新建分支并关联到远程"></a>三、新建分支并关联到远程</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git checkout -b dev</span><br><span class="line">git push --set-upstream origin dev</span><br></pre></td></tr></table></figure>
 
-<p>四、远程分支拉到本地</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git pull origin dev</span><br></pre></td></tr></table></figure>
+<h3 id="四、远程分支拉到本地"><a href="#四、远程分支拉到本地" class="headerlink" title="四、远程分支拉到本地"></a>四、远程分支拉到本地</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git pull origin dev</span><br></pre></td></tr></table></figure>
 
-<p>五、在A分支修改的内容需要提交到B分支，且A分支不做同步<br>（1）通过git stash将工作区恢复到上次提交的内容，同时备份本地所做的修改</p>
+<h3 id="五、在A分支修改的内容需要提交到B分支，且A分支不做同步"><a href="#五、在A分支修改的内容需要提交到B分支，且A分支不做同步" class="headerlink" title="五、在A分支修改的内容需要提交到B分支，且A分支不做同步"></a>五、在A分支修改的内容需要提交到B分支，且A分支不做同步</h3><p>（1）通过git stash将工作区恢复到上次提交的内容，同时备份本地所做的修改</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git stash</span><br></pre></td></tr></table></figure>
 <p>（2）然后切换至B分支</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git checkout B</span><br></pre></td></tr></table></figure>
 <p>（3）从git栈中获取到最近一次stash进去的内容，恢复工作区的内容，获取之后，会删除栈中对应的stash</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git stash pop</span><br></pre></td></tr></table></figure>
 <p>（4）进行正常的提交代码步骤即可</p>
-<p>六、已有仓库连接至远程git<br>在本地初始化git仓库</p>
+<h3 id="六、已有仓库连接至远程git"><a href="#六、已有仓库连接至远程git" class="headerlink" title="六、已有仓库连接至远程git"></a>六、已有仓库连接至远程git</h3><p>在本地初始化git仓库</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git init</span><br></pre></td></tr></table></figure>
 <p>新增远程仓库上游</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git remote add origin 仓库地址</span><br></pre></td></tr></table></figure>
@@ -358,6 +478,11 @@
 <p>上传至远程仓库</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git push --set-upstream origin master</span><br></pre></td></tr></table></figure>
 <p>完成，至此项目已推送至远程，并且本地与远程仓库建立了连接。</p>
+<h3 id="七、使用https方式克隆远程https库时，出现了每次进行git操作都要验证账号密码的情况"><a href="#七、使用https方式克隆远程https库时，出现了每次进行git操作都要验证账号密码的情况" class="headerlink" title="七、使用https方式克隆远程https库时，出现了每次进行git操作都要验证账号密码的情况"></a>七、使用https方式克隆远程https库时，出现了每次进行git操作都要验证账号密码的情况</h3><p>原因是在添加远程库的时候使用了https的方式，所以每次都要用https的方式操作远程库<br>解决方案：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"># 查看使用的传输协议:</span><br><span class="line">git remote -v</span><br></pre></td></tr></table></figure>
+<p>origin <a target="_blank" rel="noopener" href="https://github.com/XXXX/XXXX.git">https://github.com/XXXX/XXXX.git</a> (fetch)<br>origin <a target="_blank" rel="noopener" href="https://github.com/XXXX/XXXX.git">https://github.com/XXXX/XXXX.git</a> (push)<br>此时可以确定是https传输<br>重新设置成ssh的方式:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">git remote rm origin</span><br><span class="line">git remote add origin ssh地址</span><br><span class="line">git push -u origin 分支名</span><br></pre></td></tr></table></figure>
+<p>设置好了之后再看当前传输协议：<br>origin <a href="mailto:&#103;&#105;&#116;&#64;&#x67;&#x69;&#x74;&#x68;&#x75;&#x62;&#46;&#99;&#x6f;&#x6d;">&#103;&#105;&#116;&#64;&#x67;&#x69;&#x74;&#x68;&#x75;&#x62;&#46;&#99;&#x6f;&#x6d;</a>:XXXX/XXXX.git (fetch)<br>origin <a href="mailto:&#x67;&#x69;&#116;&#x40;&#x67;&#105;&#x74;&#104;&#117;&#x62;&#x2e;&#x63;&#x6f;&#109;">&#x67;&#x69;&#116;&#x40;&#x67;&#105;&#x74;&#104;&#117;&#x62;&#x2e;&#x63;&#x6f;&#109;</a>:XXXX/XXXX.git (push)<br>已经变成ssh方式</p>
 <p>同时推荐一下使用的脑图软件：MindMaster ，非常好用</p>
 
         <hr>
