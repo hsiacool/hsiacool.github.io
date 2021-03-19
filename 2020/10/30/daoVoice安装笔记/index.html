@@ -59,7 +59,7 @@
       
     </ul>
   </nav>
-  <h1 class="subtitle"><span id='jinrishici-sentence'>CATEGORY: 读书笔记</span></h1>
+  <h1 class="subtitle"><span id='jinrishici-sentence'>Think twice,code once.</span></h1>
 </header>
 
     <nav id="menu">
@@ -75,8 +75,7 @@
 </nav>
     
     <main class="blog-main" style="margin-top: -150px">
-      
-    <article class="blog-post">
+      <article class="blog-post">
   
 
   <div class="post-content">
@@ -85,37 +84,70 @@
         
   
     <h1 class="post-title">
-      <a href="/2021/01/03/css揭秘读书笔记/">
-        css揭秘读书笔记
+      <a href="/2020/10/30/daoVoice安装笔记/">
+        daoVoice安装笔记
       </a>
     </h1>
   
+
+<div class="post-meta">
+  2020-10-30
+  
+  
+    
+
+
+  <span> | </span>
+  <a class="meta-category" href="/categories/教程与记录/">教程与记录</a>
+
+  
+</div>
 
       
     </div>
     <div class="post-detail">
       
-        <p>1.transform带来的元素模糊问题</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">transform-style:preserve-3d;</span><br></pre></td></tr></table></figure>
-<p>2.定宽定高元素的垂直水平居中简化写法</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">width:0.96rem;</span><br><span class="line">height:0.96rem;</span><br><span class="line">position: absolute;</span><br><span class="line">top:calc(50% - 0.48rem);</span><br><span class="line">left:calc(50% - 0.48rem);</span><br></pre></td></tr></table></figure>
-<p>3.布局高度在一屏以内之footer吸底（当body高度大于一屏幕失效）</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">&lt;body&gt;</span><br><span class="line">    &lt;header&gt;&lt;&#x2F;header&gt;</span><br><span class="line">    &lt;main&gt;&lt;&#x2F;main&gt;</span><br><span class="line">    &lt;footer&gt;&lt;&#x2F;footer&gt;</span><br><span class="line">&lt;&#x2F;body&gt;</span><br><span class="line">body&#123;</span><br><span class="line">    display:flex;</span><br><span class="line">    min-height:100vh;</span><br><span class="line">    flex-flow:column;</span><br><span class="line">&#125;</span><br><span class="line">main&#123;</span><br><span class="line">    flex:1</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>在总高度固定的情况下，flex:1则main拥有了除去底部footer高度之外的所有高度。<br>4.min-content：采用内部元素最小宽度值最大的那个元素的宽度作为最终容器的宽度<br>5.用box-shadow实现多重边框</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;*重点在于box-shadow可以设置多个值*&#x2F;</span><br><span class="line">div &#123;</span><br><span class="line">	width: 100px;</span><br><span class="line">	height: 60px;</span><br><span class="line">	margin: 25px;</span><br><span class="line">	background: yellowgreen;</span><br><span class="line">	box-shadow: 0 0 0 10px #655,</span><br><span class="line">            0 0 0 15px deeppink,</span><br><span class="line">            0 2px 5px 15px rgba(0,0,0,.6);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+        <p>daoVoice是一款客服沟通运营平台，给公司官网加客服，接触了一下daoVoice，操作简单方便，注册用户 5000 位以内免费。</p>
+<p>参考资料：<br>Api：<a target="_blank" rel="noopener" href="http://docs.daovoice.io/api/">daoVoice’s api</a><br>官方指导文档：<a target="_blank" rel="noopener" href="http://guide.daocloud.io/dcs">daoVoice 官方指导文档</a></p>
+<p>接入：<br>一、注册一个新账号 <a target="_blank" rel="noopener" href="http://dashboard.daovoice.io/get-started">daoVoice注册新账号</a></p>
+<p><img src="https://img-blog.csdnimg.cn/20210207160357657.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3Nvbmdoc2lh,size_16,color_FFFFFF,t_70"><br>二、安装并接入 <a target="_blank" rel="noopener" href="http://guide.daocloud.io/daovoice/%E5%BF%AB%E9%80%9F%E5%AE%89%E8%A3%85-5871096.html">安装手册</a></p>
+<p><img src="https://img-blog.csdnimg.cn/20210207160411859.png" alt="快速接入"><br>将生成的代码写在所要添加daovoice页面的</head>标签之前，马赛克处是不同开发者项目的appId（页面自动生成）<br>三、调用下面的daovoice代码进行初始化，对客户的不同登录状态进行不同回复的设置</p>
+<p>ejs写法：<br><img src="https://img-blog.csdnimg.cn/2021020716044083.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3Nvbmdoc2lh,size_16,color_FFFFFF,t_70" alt="ejs写法"></p>
+<p>判断用户是否登陆，登陆就初始化项目的appId，同时存入用户的Id、email和mobile，未登录就只初始化项目的appId<br>其中app_id和user_id为必填项，email便于与用户沟通<br>四、开启项目，连接成功</p>
+<p>使用：<br>1.客服人员进入后台即可与客户进行即时沟通<br>2.对于未登录游客会自动回复，同时页面上出现一个请客户留下联系方式的弹框，不会流失任何一个有需求的客户。</p>
+<p>整个操作简单方便不耗时，非常适合产品类网站建设。</p>
 
         <hr>
       
     </div>
 
     
+      
+    
 
+    
+      
+  
+  
+  <div class="post-tags">
+    <a href="/tags/daoVoice/">#daoVoice</a>
+  </div>
+  <hr>
+  
+
+      <div class="post-more">
+  
+    <div class="post-pre">
+      <span>上一篇</span>
+      <a href="/2020/11/13/git%E5%91%BD%E4%BB%A4%E5%A4%A7%E5%85%A8/">git命令大全</a>
+    </div>
+  
+  
+</div>
+      
     
   </div>
 </article>
-
-
-
 
     </main>
     

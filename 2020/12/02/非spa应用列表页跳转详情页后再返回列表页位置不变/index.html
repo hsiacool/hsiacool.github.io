@@ -59,7 +59,7 @@
       
     </ul>
   </nav>
-  <h1 class="subtitle"><span id='jinrishici-sentence'>TAG: javascript</span></h1>
+  <h1 class="subtitle"><span id='jinrishici-sentence'>Think twice,code once.</span></h1>
 </header>
 
     <nav id="menu">
@@ -75,43 +75,7 @@
 </nav>
     
     <main class="blog-main" style="margin-top: -150px">
-      
-    <article class="blog-post">
-  
-
-  <div class="post-content">
-    <div class="post-header">
-      
-        
-  
-    <h1 class="post-title">
-      <a href="/2021/01/17/js运行机制相关总结/">
-        js运行机制相关总结
-      </a>
-    </h1>
-  
-
-      
-    </div>
-    <div class="post-detail">
-      
-        <p>本篇主要理解和总结一下js运行相关的微任务、宏任务、async、await和Eventloop</p>
-<p>这些出现的前提是js为单线程语言，这里的单线程是指在JS引擎中负责解释和执行JavaScript代码的线程只有一个，也叫主线程。js主要被用来与用户互动，操作dom，如果多线程去操作同一个dom容易出现问题。<br>那么cpu处理必然会出现排队等待的情况，此时任务可分为同步任务和异步任务，主线程去立即执行同步任务，形成一个执行栈。在主线程之外，有一个任务队列，当遇到异步任务时，主线程发出一个异步I/O请求，这个请求被传递给设备驱动程序，由后者负责完成实际的I/O操作，当I/O处理完之后，再将拿到结果的回调函数放到任务队列。<br>如果此任务是宏任务，放到macro task队列中，如果是微任务，放到micro task队列中。简单判断：<br>微任务：<br>1.有Promise，async，await<br>2.执行时机早，在DOM渲染前触发<br>3.是由ES6语法规定的<br>宏任务：<br>1.有setTimeout，setInterval，Ajax，DOM<br>2.执行时机晚，在DOM渲染后触发<br>3.是由浏览器W3C规定的</p>
-<p>当所有的同步任务都执行完毕后，主线程就会进入任务队列查看异步任务，每次主线程去任务队列读取异步任务的过程就是事件循环，然后异步任务进入主线程执行，这时会先执行微任务的micro task队列，尝试dom渲染，继续事件循环，执行宏任务macro task队列。</p>
-<h3 id="注意："><a href="#注意：" class="headerlink" title="注意："></a>注意：</h3><p>1.new定义的promise会被立即执行<br>2.async()是函数执行代码，会立即执行，then()是异步标志，会记录为微任务之后执行<br>3.await后面的代码都会作为异步回调函数来执行<br>4.setTimeout()此行代码执行时只是将事件插入了任务队列，必须等到当前代码（执行栈）执行完，主线程才会去执行它指定的回调函数。要是当前代码耗时很长，有可能要等很久，所以并没有办法保证，回调函数一定会在setTimeout()指定的时间执行</p>
-
-        <hr>
-      
-    </div>
-
-    
-
-    
-  </div>
-</article>
-
-
-    <article class="blog-post">
+      <article class="blog-post">
   
 
   <div class="post-content">
@@ -125,6 +89,19 @@
       </a>
     </h1>
   
+
+<div class="post-meta">
+  2020-12-02
+  
+  
+    
+
+
+  <span> | </span>
+  <a class="meta-category" href="/categories/教程与记录/">教程与记录</a>
+
+  
+</div>
 
       
     </div>
@@ -146,13 +123,37 @@
     </div>
 
     
+      
+    
 
+    
+      
+  
+  
+  <div class="post-tags">
+    <a href="/tags/javascript/">#javascript</a>
+  </div>
+  <hr>
+  
+
+      <div class="post-more">
+  
+    <div class="post-pre">
+      <span>上一篇</span>
+      <a href="/2020/12/11/%E5%B0%8F%E7%A8%8B%E5%BA%8F%E9%A1%B9%E7%9B%AE%E8%B8%A9%E5%9D%91%E5%AE%9E%E5%BD%95/">小程序项目踩坑实录</a>
+    </div>
+  
+  
+  <div class="post-next">
+    <span>下一篇</span>
+    <a href="/2020/11/13/git%E5%91%BD%E4%BB%A4%E5%A4%A7%E5%85%A8/">git命令大全</a>
+  </div>
+  
+</div>
+      
     
   </div>
 </article>
-
-
-
 
     </main>
     

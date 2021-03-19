@@ -59,7 +59,7 @@
       
     </ul>
   </nav>
-  <h1 class="subtitle"><span id='jinrishici-sentence'>CATEGORY: 读书笔记</span></h1>
+  <h1 class="subtitle"><span id='jinrishici-sentence'>Think twice,code once.</span></h1>
 </header>
 
     <nav id="menu">
@@ -75,8 +75,7 @@
 </nav>
     
     <main class="blog-main" style="margin-top: -150px">
-      
-    <article class="blog-post">
+      <article class="blog-post">
   
 
   <div class="post-content">
@@ -85,37 +84,64 @@
         
   
     <h1 class="post-title">
-      <a href="/2021/01/03/css揭秘读书笔记/">
-        css揭秘读书笔记
+      <a href="/2021/03/18/http缓存相关总结/">
+        http缓存相关总结
       </a>
     </h1>
   
+
+<div class="post-meta">
+  2021-03-18
+  
+  
+    
+
+
+  <span> | </span>
+  <a class="meta-category" href="/categories/理解与总结/">理解与总结</a>
+
+  
+</div>
 
       
     </div>
     <div class="post-detail">
       
-        <p>1.transform带来的元素模糊问题</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">transform-style:preserve-3d;</span><br></pre></td></tr></table></figure>
-<p>2.定宽定高元素的垂直水平居中简化写法</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">width:0.96rem;</span><br><span class="line">height:0.96rem;</span><br><span class="line">position: absolute;</span><br><span class="line">top:calc(50% - 0.48rem);</span><br><span class="line">left:calc(50% - 0.48rem);</span><br></pre></td></tr></table></figure>
-<p>3.布局高度在一屏以内之footer吸底（当body高度大于一屏幕失效）</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">&lt;body&gt;</span><br><span class="line">    &lt;header&gt;&lt;&#x2F;header&gt;</span><br><span class="line">    &lt;main&gt;&lt;&#x2F;main&gt;</span><br><span class="line">    &lt;footer&gt;&lt;&#x2F;footer&gt;</span><br><span class="line">&lt;&#x2F;body&gt;</span><br><span class="line">body&#123;</span><br><span class="line">    display:flex;</span><br><span class="line">    min-height:100vh;</span><br><span class="line">    flex-flow:column;</span><br><span class="line">&#125;</span><br><span class="line">main&#123;</span><br><span class="line">    flex:1</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>在总高度固定的情况下，flex:1则main拥有了除去底部footer高度之外的所有高度。<br>4.min-content：采用内部元素最小宽度值最大的那个元素的宽度作为最终容器的宽度<br>5.用box-shadow实现多重边框</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;*重点在于box-shadow可以设置多个值*&#x2F;</span><br><span class="line">div &#123;</span><br><span class="line">	width: 100px;</span><br><span class="line">	height: 60px;</span><br><span class="line">	margin: 25px;</span><br><span class="line">	background: yellowgreen;</span><br><span class="line">	box-shadow: 0 0 0 10px #655,</span><br><span class="line">            0 0 0 15px deeppink,</span><br><span class="line">            0 2px 5px 15px rgba(0,0,0,.6);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+        <p>最近在看缓存相关的东西，查阅完资料对这部分知识做个总结。</p>
+<h3 id="一、资源相关状态码与分类"><a href="#一、资源相关状态码与分类" class="headerlink" title="一、资源相关状态码与分类"></a>一、资源相关状态码与分类</h3><p>一般常见的资源返回状态码有以下几种：<br>(1)200 OK (FROM MemoryCache)：不访问服务器，直接从内存中读取缓存（一般js文件、图片都储存在内存中，因为可能频繁会用到，内存中读取比较快）<br>(2)200 OK (FROM DiskCache)：不访问服务器，直接从磁盘中读取缓存(一般非脚本文件会储存在磁盘中（如css等），因为css只加载一次就渲染出来了，不会频繁读取)<br>(3)304 (NOT MODIFIED)： 访问服务器，发现数据没有更新，服务器返回此状态码。然后从缓存中读取数据<br>一般读取缓存的顺序就是：内存-&gt;磁盘-&gt;访问服务器<br>所以http缓存一般可以分为两类：<br>1.强缓存(200 状态码)<br>2.协商缓存(304 状态码)</p>
+<h3 id="二、缓存的命中机制："><a href="#二、缓存的命中机制：" class="headerlink" title="二、缓存的命中机制："></a>二、缓存的命中机制：</h3><p>强缓存主要是浏览器先通过cache-control来判断，判断步骤是：<br>(1)首先根据cache-control和Expires进行判断<br>第一次请求这个资源时，如果服务器认为此资源可被缓存，则response headers里会返回cache-control和Expires，如果不可被缓存，则不会返回，如果同时设置的话，cache-control优先级高于Expires，返回后浏览器将它缓存到本地，此时根据情况判断缓存至内存还是磁盘<br>(2)如果有cache-control和Expires，则会根据他们的取值进行判断，例如如果有max-age需要判断max-age是否过期：<br>不过期则直接读取缓存(命中强缓存)<br>过期的话会去做协商缓存<br>(3)协商缓存：判断上次文件返回头里有没有Etag和Last-Modified（Etag是资源唯一对应的字符串，Last-Modified是资源上次修改时间，第一次请求资源时会返回，如果两个同时存在，则优先使用Etag，因为1.Last-Modified只能精确到秒级2.如果资源是重复生成但内容未变，Etag会更准确）<br>如果不存在，说明之前未请求过此资源，会向服务器发送请求，服务器返回资源<br>如果存在，说明之前已请求过此资源，同样向服务器发送请求，将If-Modify-Since和If-None-Match发送给服务器（Last-Modified对应If-Modify-Since，Etag对应If-None-Match），服务器会根据内容判断是否命中了协商缓存<br>如果命中，则返回304（资源未被修改）,且不会返回资源内容，并且不会返回Last-Modify，同时浏览器从缓存中读取资源<br>如果未命中，则返回200和资源</p>
 
         <hr>
       
     </div>
 
     
+      
+    
 
+    
+      
+  
+  
+  <div class="post-tags">
+    <a href="/tags/http/">#http</a>
+  </div>
+  <hr>
+  
+
+      <div class="post-more">
+  
+  
+  <div class="post-next">
+    <span>下一篇</span>
+    <a href="/2021/02/24/vue%E9%A1%B9%E7%9B%AE%E8%B8%A9%E5%9D%91%E5%AE%9E%E5%BD%95/">vue项目踩坑实录</a>
+  </div>
+  
+</div>
+      
     
   </div>
 </article>
-
-
-
 
     </main>
     

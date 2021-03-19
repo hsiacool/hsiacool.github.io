@@ -59,7 +59,7 @@
       
     </ul>
   </nav>
-  <h1 class="subtitle"><span id='jinrishici-sentence'>CATEGORY: 读书笔记</span></h1>
+  <h1 class="subtitle"><span id='jinrishici-sentence'>Think twice,code once.</span></h1>
 </header>
 
     <nav id="menu">
@@ -75,8 +75,7 @@
 </nav>
     
     <main class="blog-main" style="margin-top: -150px">
-      
-    <article class="blog-post">
+      <article class="blog-post">
   
 
   <div class="post-content">
@@ -85,37 +84,68 @@
         
   
     <h1 class="post-title">
-      <a href="/2021/01/03/css揭秘读书笔记/">
-        css揭秘读书笔记
+      <a href="/2020/12/11/小程序项目踩坑实录/">
+        小程序项目踩坑实录
       </a>
     </h1>
   
+
+<div class="post-meta">
+  2020-12-11
+  
+  
+    
+
+
+  <span> | </span>
+  <a class="meta-category" href="/categories/教程与记录/">教程与记录</a>
+
+  
+</div>
 
       
     </div>
     <div class="post-detail">
       
-        <p>1.transform带来的元素模糊问题</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">transform-style:preserve-3d;</span><br></pre></td></tr></table></figure>
-<p>2.定宽定高元素的垂直水平居中简化写法</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">width:0.96rem;</span><br><span class="line">height:0.96rem;</span><br><span class="line">position: absolute;</span><br><span class="line">top:calc(50% - 0.48rem);</span><br><span class="line">left:calc(50% - 0.48rem);</span><br></pre></td></tr></table></figure>
-<p>3.布局高度在一屏以内之footer吸底（当body高度大于一屏幕失效）</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">&lt;body&gt;</span><br><span class="line">    &lt;header&gt;&lt;&#x2F;header&gt;</span><br><span class="line">    &lt;main&gt;&lt;&#x2F;main&gt;</span><br><span class="line">    &lt;footer&gt;&lt;&#x2F;footer&gt;</span><br><span class="line">&lt;&#x2F;body&gt;</span><br><span class="line">body&#123;</span><br><span class="line">    display:flex;</span><br><span class="line">    min-height:100vh;</span><br><span class="line">    flex-flow:column;</span><br><span class="line">&#125;</span><br><span class="line">main&#123;</span><br><span class="line">    flex:1</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>在总高度固定的情况下，flex:1则main拥有了除去底部footer高度之外的所有高度。<br>4.min-content：采用内部元素最小宽度值最大的那个元素的宽度作为最终容器的宽度<br>5.用box-shadow实现多重边框</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;*重点在于box-shadow可以设置多个值*&#x2F;</span><br><span class="line">div &#123;</span><br><span class="line">	width: 100px;</span><br><span class="line">	height: 60px;</span><br><span class="line">	margin: 25px;</span><br><span class="line">	background: yellowgreen;</span><br><span class="line">	box-shadow: 0 0 0 10px #655,</span><br><span class="line">            0 0 0 15px deeppink,</span><br><span class="line">            0 2px 5px 15px rgba(0,0,0,.6);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+        <h3 id="1-拼接字符串转时间戳，设备不同方法不同"><a href="#1-拼接字符串转时间戳，设备不同方法不同" class="headerlink" title="1.拼接字符串转时间戳，设备不同方法不同"></a>1.拼接字符串转时间戳，设备不同方法不同</h3><p>在pc和android上以’-‘拼接，在ios上以’/‘拼接</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">if (that.data.systemInfo.platform &#x3D;&#x3D; &quot;ios&quot;) &#123;</span><br><span class="line">  var q &#x3D; that.data.year + &#39;&#x2F;&#39; + that.data.month + &#39;&#x2F;&#39; + that.data.day + &#39; &#39; + that.data.timestamp;</span><br><span class="line">&#125; else &#123;</span><br><span class="line">  var q &#x3D; that.data.year + &#39;-&#39; + that.data.month+ &#39;-&#39; + that.data.day+ &#39; &#39; + that.data.timestamp;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
         <hr>
       
     </div>
 
     
+      
+    
 
+    
+      
+  
+  
+  <div class="post-tags">
+    <a href="/tags/小程序/">#小程序</a>
+  </div>
+  <hr>
+  
+
+      <div class="post-more">
+  
+    <div class="post-pre">
+      <span>上一篇</span>
+      <a href="/2020/12/29/%E6%AD%A3%E5%90%91%E3%80%81%E5%8F%8D%E5%90%91%E4%BB%A3%E7%90%86%E7%90%86%E8%A7%A3/">正向、反向代理理解笔记</a>
+    </div>
+  
+  
+  <div class="post-next">
+    <span>下一篇</span>
+    <a href="/2020/12/02/%E9%9D%9Espa%E5%BA%94%E7%94%A8%E5%88%97%E8%A1%A8%E9%A1%B5%E8%B7%B3%E8%BD%AC%E8%AF%A6%E6%83%85%E9%A1%B5%E5%90%8E%E5%86%8D%E8%BF%94%E5%9B%9E%E5%88%97%E8%A1%A8%E9%A1%B5%E4%BD%8D%E7%BD%AE%E4%B8%8D%E5%8F%98/">非spa应用列表页跳转详情页后再返回列表页位置不变</a>
+  </div>
+  
+</div>
+      
     
   </div>
 </article>
-
-
-
 
     </main>
     
