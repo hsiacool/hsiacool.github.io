@@ -113,8 +113,9 @@
     });
   }
 
- 
+
   let config = window.config;
+  console.log(config)
   let cicada = new Cicada(config);
   cicada.setup();
 
