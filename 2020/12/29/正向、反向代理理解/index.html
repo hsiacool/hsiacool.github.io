@@ -1,0 +1,181 @@
+
+
+<html lang="zh-CN">
+  <head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  <meta http-equiv="Cache-Control" content="no-transform" />
+  <meta http-equiv="Cache-Control" content="no-siteapp" />
+
+  <meta name="theme-color" content="#42dbbc" />
+  <meta name="msapplication-navbutton-color" content="#f8f5ec" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec" />
+
+  
+  
+  
+    <link rel="shortcut icon" type="image/x-icon" href="/images/favicon.ico" />
+  
+
+  <title>Hsiacool&#39;blog</title>
+
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.1.0/css/all.css" integrity="sha384-lKuwvrZot6UHsBSfcMvOkWwlCMgc0TaWr+30HWe3a4ltaBwTZhyTEggF5tJv8tbt" crossorigin="anonymous">
+
+  
+    <link rel="stylesheet" type="text/css" href="/lib/fancybox/jquery.fancybox.css" />
+  
+
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/atom-one-light.min.css">
+
+  
+<link rel="stylesheet" href="/css/style.css">
+
+
+  
+
+  <script>
+    window.config = {"favicon":"/images/favicon.ico","language":"zh-CN","menu":{"home":"/","archives":"/archives","tags":"/tags","categories":"/categories"},"show_tag":true,"show_category":true,"highlight":"atom-one-light","excerpt_link":"Read More","fancybox":true,"disqus_shortname":null,"rss":"default","google_analytics":null,"portfolio":{"subtitle":"Some Works","cards":{"card1":{"cover":"/images/screenshot.png","content":"Cicada is a concise and retro Hexo theme.","link":"https://github.com/Kexin-Li/hexo-theme-cicada"},"card2":{"cover":"/images/screenshot.png","content":"Cicada is a Hexo theme, it tastes like summer.","link":"http://kexin-li.github.io"},"card3":{"cover":"/images/screenshot.png","content":"Cicada is a Hexo theme, it tastes like summer.","link":"http://kexin-li.github.io"}}},"about":null,"subtitle":"About Me","poem":false};
+  </script>
+<meta name="generator" content="Hexo 5.4.0"></head>
+  <body>
+    
+
+<header class="blog-slide" style="height: px">
+  <nav class="blog-header">
+    <a class="mobile toggle-button"><i class="fas fa-bars fa-lg"></i></a>
+    <ul>
+      <li class="title"><a href="/">Hsiacool&#39;blog</a></li>
+      
+        <li class="nav-item"><a href="/">首页</a></li>
+      
+        <li class="nav-item"><a href="/archives">归档</a></li>
+      
+        <li class="nav-item"><a href="/tags">标签</a></li>
+      
+        <li class="nav-item"><a href="/categories">分类</a></li>
+      
+    </ul>
+  </nav>
+  <h1 class="subtitle"><span id='jinrishici-sentence'>Think twice,code once.</span></h1>
+</header>
+
+    <nav id="menu">
+  
+    <a href="/">首页</a>
+  
+    <a href="/archives">归档</a>
+  
+    <a href="/tags">标签</a>
+  
+    <a href="/categories">分类</a>
+  
+</nav>
+    
+    <main class="blog-main" style="margin-top: -150px">
+      <article class="blog-post">
+  
+
+  <div class="post-content">
+    <div class="post-header">
+      
+        
+  
+    <h1 class="post-title">
+      <a href="/2020/12/29/正向、反向代理理解/">
+        正向、反向代理理解笔记
+      </a>
+    </h1>
+  
+
+<div class="post-meta">
+  2020-12-29
+  
+  
+    
+
+
+  <span> | </span>
+  <a class="meta-category" href="/categories/理解与总结/">理解与总结</a>
+
+  
+</div>
+
+      
+    </div>
+    <div class="post-detail">
+      
+        <p>首先，二者差异：<br>正向代理时客户端需要进行设置，告诉代理服务器要请求数据和去哪里请求（客户端知道自己要发送给代理服务器，客户端和代理服务器认识，客户端通过代理服务器认识服务器解决需求），反向代理时客户端正常发送请求（不知道要发送给代理服务器），由代理服务器自行判断向哪个服务器请求数据（相当于代理服务器和服务器认识，代理服务器帮服务器拉有需求的客户端）。</p>
+<h3 id="一、正向代理-Forward-Proxy"><a href="#一、正向代理-Forward-Proxy" class="headerlink" title="一、正向代理(Forward Proxy)"></a>一、正向代理(Forward Proxy)</h3><p>代理服务器C就是替代客户端A访问服务器B的一个中间服务器，客户端A向代理服务器C发送请求并指定访问的目标服务器B，代理服务器C向服务器B请求访问，并将访问到的内容返回给客户端A。<br>C替代A访问的三种可能情况：<br>1.客户端A访问服务器B时出现了故障，无法直接访问<br>2.客户端A直接访问服务器B时速率太慢，想要加速访问<br>3.由于当客户端A访问服务器B之前已经有其他用户使用代理服务器C访问过服务器B上的数据，代理服务器B就会把数据保留一段时间，在此时间段内想获得该数据都不需要再次访问，这叫做cache命中，所以，使用代理服务器可以减少访问次数。<br>4.使用代理服务器C授权用户是否有权限访问<br>5.使用代理隐藏真正访问者客户</p>
+<h3 id="二、反向代理（reverse-proxy）"><a href="#二、反向代理（reverse-proxy）" class="headerlink" title="二、反向代理（reverse proxy）"></a>二、反向代理（reverse proxy）</h3><p>客户端A想访问服务器B，并且发出了访问请求，并不知道接收到请求的是代理服务器，以为是真正服务器，当代理服务器接收到客户端的请求，根据设置自行判断要去哪个服务器上获取数据，并将访问到的内容返回给客户端A。<br>反向代理作用在于：<br>1.保护和隐藏原始资源服务器，因为客户端不知道自己访问的不是真正的服务器<br>2.负载均衡，当用户不止一个时，使用不同的代理服务器应答不同的用户，当代理服务器和客户端来自同一个网络，会获得很高质量的速度，比如CDN.</p>
+
+        <hr>
+      
+    </div>
+
+    
+      
+    
+
+    
+      
+  
+  
+  <div class="post-tags">
+    <a href="/tags/服务器/">#服务器</a>
+  </div>
+  <hr>
+  
+
+      <div class="post-more">
+  
+    <div class="post-pre">
+      <span>上一篇</span>
+      <a href="/2021/01/03/css%E6%8F%AD%E7%A7%98%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/">css揭秘读书笔记</a>
+    </div>
+  
+  
+  <div class="post-next">
+    <span>下一篇</span>
+    <a href="/2020/12/11/%E5%B0%8F%E7%A8%8B%E5%BA%8F%E9%A1%B9%E7%9B%AE%E8%B8%A9%E5%9D%91%E5%AE%9E%E5%BD%95/">小程序项目踩坑实录</a>
+  </div>
+  
+</div>
+      
+    
+  </div>
+</article>
+
+    </main>
+    
+    <div class="back-to-top" id="back-to-top"><i class="fas fa-arrow-alt-circle-up fa-2x"></i></div>
+
+    <footer class="blog-footer">
+  
+
+
+  
+
+ 
+  <!-- <div class="blog-footer-copyright">
+  <p class="copyright">Copyright © 2018 Hsiacool. Powered by <a target="_blank" rel="noopener" href="https://hexo.io/">Hexo</a> and <a target="_blank" rel="noopener" href="https://github.com/Kexin-Li/hexo-theme-cicada">Cicada</a>. <iframe src="https://ghbtns.com/github-btn.html?user=Kexin-Li&repo=hexo-theme-cicada&type=star&count=false&size=small" frameborder="0" scrolling="0" width="58px" height="30px" style="margin-bottom: -15px"></iframe></p>
+</div> -->
+
+</footer>
+
+<script type="text/javascript" src="/lib/jquery/jquery.min.js"></script>
+
+
+  <script type="text/javascript" src="/lib/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<!--  -->
+
+
+
+
+<script type="text/javascript" src="/js/cicada.js"></script>
+  </body>
+</html>
