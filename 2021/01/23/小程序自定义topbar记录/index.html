@@ -1,0 +1,182 @@
+
+
+<html lang="zh-CN">
+  <head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  <meta http-equiv="Cache-Control" content="no-transform" />
+  <meta http-equiv="Cache-Control" content="no-siteapp" />
+
+  <meta name="theme-color" content="#42dbbc" />
+  <meta name="msapplication-navbutton-color" content="#f8f5ec" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec" />
+
+  
+  
+  
+    <link rel="shortcut icon" type="image/x-icon" href="/images/favicon.ico" />
+  
+
+  <title>Hsiacool&#39;blog</title>
+
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.1.0/css/all.css" integrity="sha384-lKuwvrZot6UHsBSfcMvOkWwlCMgc0TaWr+30HWe3a4ltaBwTZhyTEggF5tJv8tbt" crossorigin="anonymous">
+
+  
+    <link rel="stylesheet" type="text/css" href="/lib/fancybox/jquery.fancybox.css" />
+  
+
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/atom-one-light.min.css">
+
+  
+<link rel="stylesheet" href="/css/style.css">
+
+
+  
+
+  <script>
+    window.config = {"favicon":"/images/favicon.ico","language":"zh-CN","menu":{"home":"/","archives":"/archives","tags":"/tags","categories":"/categories"},"show_tag":true,"show_category":true,"highlight":"atom-one-light","excerpt_link":"Read More","fancybox":true,"disqus_shortname":null,"rss":"default","google_analytics":null,"portfolio":{"subtitle":"Some Works","cards":{"card1":{"cover":"/images/screenshot.png","content":"Cicada is a concise and retro Hexo theme.","link":"https://github.com/Kexin-Li/hexo-theme-cicada"},"card2":{"cover":"/images/screenshot.png","content":"Cicada is a Hexo theme, it tastes like summer.","link":"http://kexin-li.github.io"},"card3":{"cover":"/images/screenshot.png","content":"Cicada is a Hexo theme, it tastes like summer.","link":"http://kexin-li.github.io"}}},"about":null,"subtitle":"About Me","poem":false};
+  </script>
+<meta name="generator" content="Hexo 5.4.0"></head>
+  <body>
+    
+
+<header class="blog-slide" style="height: px">
+  <nav class="blog-header">
+    <a class="mobile toggle-button"><i class="fas fa-bars fa-lg"></i></a>
+    <ul>
+      <li class="title"><a href="/">Hsiacool&#39;blog</a></li>
+      
+        <li class="nav-item"><a href="/">首页</a></li>
+      
+        <li class="nav-item"><a href="/archives">归档</a></li>
+      
+        <li class="nav-item"><a href="/tags">标签</a></li>
+      
+        <li class="nav-item"><a href="/categories">分类</a></li>
+      
+    </ul>
+  </nav>
+  <h1 class="subtitle"><span id='jinrishici-sentence'>Think twice,code once.</span></h1>
+</header>
+
+    <nav id="menu">
+  
+    <a href="/">首页</a>
+  
+    <a href="/archives">归档</a>
+  
+    <a href="/tags">标签</a>
+  
+    <a href="/categories">分类</a>
+  
+</nav>
+    
+    <main class="blog-main" style="margin-top: -150px">
+      <article class="blog-post">
+  
+
+  <div class="post-content">
+    <div class="post-header">
+      
+        
+  
+    <h1 class="post-title">
+      <a href="/2021/01/23/小程序自定义topbar记录/">
+        小程序自定义tabbar记录
+      </a>
+    </h1>
+  
+
+<div class="post-meta">
+  2021-01-23
+  
+  
+    
+
+
+  <span> | </span>
+  <a class="meta-category" href="/categories/教程与记录/">教程与记录</a>
+
+  
+</div>
+
+      
+    </div>
+    <div class="post-detail">
+      
+        <p>整体思路是先定义自定义模式，后将自定义的那部分作为组件呈现<br>1.首先需要在全局先注册自定义tabbar,自定义模式”custom”: true,其他所需参数补齐</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F;app.json</span><br><span class="line">&quot;tabBar&quot;: &#123;</span><br><span class="line">    &quot;custom&quot;: true,</span><br><span class="line">    &quot;color&quot;: &quot;#555555&quot;,</span><br><span class="line">    &quot;selectedColor&quot;: &quot;#336DFF&quot;,</span><br><span class="line">    &quot;backgroundColor&quot;: &quot;#fff&quot;,</span><br><span class="line">    &quot;list&quot;: [</span><br><span class="line">      &#123;</span><br><span class="line">      &quot;pagePath&quot;: &quot;pages&#x2F;index&#x2F;index&quot;,</span><br><span class="line">      &quot;iconPath&quot;: &quot;images&#x2F;common&#x2F;home.png&quot;,</span><br><span class="line">      &quot;selectedIconPath&quot;: &quot;images&#x2F;common&#x2F;home-active.png&quot;,</span><br><span class="line">      &quot;text&quot;: &quot;首页&quot;</span><br><span class="line">      &#125;,</span><br><span class="line">      &#123;</span><br><span class="line">        &quot;pagePath&quot;: &quot;pages&#x2F;index&#x2F;index&quot;,</span><br><span class="line">        &quot;text&quot;: &quot;组件&quot;</span><br><span class="line">        &#125;,</span><br><span class="line">      &#123;</span><br><span class="line">        &quot;pagePath&quot;: &quot;pages&#x2F;mine&#x2F;index&quot;,</span><br><span class="line">        &quot;iconPath&quot;: &quot;images&#x2F;common&#x2F;mine.png&quot;,</span><br><span class="line">        &quot;selectedIconPath&quot;: &quot;images&#x2F;common&#x2F;mine-active.png&quot;,</span><br><span class="line">        &quot;text&quot;: &quot;接口&quot;</span><br><span class="line">      &#125;</span><br><span class="line">    ]</span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure>
+<p>  2.根目录下新建custom-tab-bar，使用组件形式自定义tabbar</p>
+<h3 id="出现的问题"><a href="#出现的问题" class="headerlink" title="出现的问题"></a>出现的问题</h3><p>  1.点击tabbar的时候图标闪烁，不能及时切换的问题，此时需要在每个tab点击后要到达的页面写上以下代码，重新去确定selected<br>  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"> onShow()&#123;</span><br><span class="line">  if (typeof this.getTabBar &#x3D;&#x3D;&#x3D; &#39;function&#39; &amp;&amp; this.getTabBar()) &#123;</span><br><span class="line">    this.getTabBar().setData(&#123;</span><br><span class="line">      selected: 0&#x2F;&#x2F;这里是本页面在tabbar实例中的index</span><br><span class="line">    &#125;)</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><br>2.在实际写项目的时候，出现了使用wx.navigateTo或navigate标签跳转层级过深，出现无法跳转的情况，这是由于小程序本身限制，层级不可超过10栈<br>解决方案：可以使用wx.navigateBack退回上级目录，减少栈的增加<br>注：使用navigator标签跳转的时候要注意跳到什么页面，open-type默认值是navigate，无法跳到switchTab页面，需要修改open-type值</p>
+
+        <hr>
+      
+    </div>
+
+    
+      
+    
+
+    
+      
+  
+  
+  <div class="post-tags">
+    <a href="/tags/小程序/">#小程序</a>
+  </div>
+  <hr>
+  
+
+      <div class="post-more">
+  
+    <div class="post-pre">
+      <span>上一篇</span>
+      <a href="/2021/02/09/%E7%A7%BB%E5%8A%A8%E7%AB%AF%E9%80%82%E9%85%8D/">移动端适配</a>
+    </div>
+  
+  
+  <div class="post-next">
+    <span>下一篇</span>
+    <a href="/2021/01/17/js%E8%BF%90%E8%A1%8C%E6%9C%BA%E5%88%B6%E7%9B%B8%E5%85%B3%E6%80%BB%E7%BB%93/">js运行机制相关总结</a>
+  </div>
+  
+</div>
+      
+    
+  </div>
+</article>
+
+    </main>
+    
+    <div class="back-to-top" id="back-to-top"><i class="fas fa-arrow-alt-circle-up fa-2x"></i></div>
+
+    <footer class="blog-footer">
+  
+
+
+  
+
+ 
+  <!-- <div class="blog-footer-copyright">
+  <p class="copyright">Copyright © 2018 Hsiacool. Powered by <a target="_blank" rel="noopener" href="https://hexo.io/">Hexo</a> and <a target="_blank" rel="noopener" href="https://github.com/Kexin-Li/hexo-theme-cicada">Cicada</a>. <iframe src="https://ghbtns.com/github-btn.html?user=Kexin-Li&repo=hexo-theme-cicada&type=star&count=false&size=small" frameborder="0" scrolling="0" width="58px" height="30px" style="margin-bottom: -15px"></iframe></p>
+</div> -->
+
+</footer>
+
+<script type="text/javascript" src="/lib/jquery/jquery.min.js"></script>
+
+
+  <script type="text/javascript" src="/lib/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<!--  -->
+
+
+
+
+<script type="text/javascript" src="/js/cicada.js"></script>
+  </body>
+</html>

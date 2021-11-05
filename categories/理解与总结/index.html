@@ -1,0 +1,458 @@
+
+
+<html lang="zh-CN">
+  <head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  <meta http-equiv="Cache-Control" content="no-transform" />
+  <meta http-equiv="Cache-Control" content="no-siteapp" />
+
+  <meta name="theme-color" content="#42dbbc" />
+  <meta name="msapplication-navbutton-color" content="#f8f5ec" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec" />
+
+  
+  
+  
+    <link rel="shortcut icon" type="image/x-icon" href="/images/favicon.ico" />
+  
+
+  <title>Hsiacool&#39;blog</title>
+
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.1.0/css/all.css" integrity="sha384-lKuwvrZot6UHsBSfcMvOkWwlCMgc0TaWr+30HWe3a4ltaBwTZhyTEggF5tJv8tbt" crossorigin="anonymous">
+
+  
+    <link rel="stylesheet" type="text/css" href="/lib/fancybox/jquery.fancybox.css" />
+  
+
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/atom-one-light.min.css">
+
+  
+<link rel="stylesheet" href="/css/style.css">
+
+
+  
+
+  <script>
+    window.config = {"favicon":"/images/favicon.ico","language":"zh-CN","menu":{"home":"/","archives":"/archives","tags":"/tags","categories":"/categories"},"show_tag":true,"show_category":true,"highlight":"atom-one-light","excerpt_link":"Read More","fancybox":true,"disqus_shortname":null,"rss":"default","google_analytics":null,"portfolio":{"subtitle":"Some Works","cards":{"card1":{"cover":"/images/screenshot.png","content":"Cicada is a concise and retro Hexo theme.","link":"https://github.com/Kexin-Li/hexo-theme-cicada"},"card2":{"cover":"/images/screenshot.png","content":"Cicada is a Hexo theme, it tastes like summer.","link":"http://kexin-li.github.io"},"card3":{"cover":"/images/screenshot.png","content":"Cicada is a Hexo theme, it tastes like summer.","link":"http://kexin-li.github.io"}}},"about":null,"subtitle":"About Me","poem":false};
+  </script>
+<meta name="generator" content="Hexo 5.4.0"></head>
+  <body>
+    
+
+<header class="blog-slide" style="height: px">
+  <nav class="blog-header">
+    <a class="mobile toggle-button"><i class="fas fa-bars fa-lg"></i></a>
+    <ul>
+      <li class="title"><a href="/">Hsiacool&#39;blog</a></li>
+      
+        <li class="nav-item"><a href="/">首页</a></li>
+      
+        <li class="nav-item"><a href="/archives">归档</a></li>
+      
+        <li class="nav-item"><a href="/tags">标签</a></li>
+      
+        <li class="nav-item"><a href="/categories">分类</a></li>
+      
+    </ul>
+  </nav>
+  <h1 class="subtitle"><span id='jinrishici-sentence'>CATEGORY: 理解与总结</span></h1>
+</header>
+
+    <nav id="menu">
+  
+    <a href="/">首页</a>
+  
+    <a href="/archives">归档</a>
+  
+    <a href="/tags">标签</a>
+  
+    <a href="/categories">分类</a>
+  
+</nav>
+    
+    <main class="blog-main" style="margin-top: -150px">
+      
+    <article class="blog-post">
+  
+
+  <div class="post-content">
+    <div class="post-header">
+      
+        
+  
+    <h1 class="post-title">
+      <a href="/2021/08/28/键盘操作table表格/">
+        键盘操作table表格
+      </a>
+    </h1>
+  
+
+      
+    </div>
+    <div class="post-detail">
+      
+        <p>最近在做的项目中有一个场景是键盘操作table+模糊搜索操作，记录下来复盘一下。</p>
+<h3 id="1-键盘控制table表单（上下左右移动被选中的单元格，被选中单元格变为可编辑状态）"><a href="#1-键盘控制table表单（上下左右移动被选中的单元格，被选中单元格变为可编辑状态）" class="headerlink" title="1.键盘控制table表单（上下左右移动被选中的单元格，被选中单元格变为可编辑状态）"></a>1.键盘控制table表单（上下左右移动被选中的单元格，被选中单元格变为可编辑状态）</h3><p>最开始接到需求的时候我想起了elementui的contentEditable属性，但是contentEditable属性用在这里有一个致命的问题就是它只是在本元素上增加了h5新特性，模拟编辑器而已，本身元素不改变，不是input元素的话无法监听键盘事件。</p>
+<p>那么既然需要有键盘事件，就需要有input，两种状态可以用span和input来切换，这样的话需要由一个变量来控制，这个变量可以当作是某行元素的一个属性。同时，当前操作元素的判断可以通过行（row.index）+列（prop）的形式确定。聚焦就写一个自定义指令v-focus</p>
+<p>如何控制选中元素的移动呢，当聚焦在input上时，监听上下左右键盘事件，当点击左右，使用一个switch函数确定如何切换prop，currentRow.index不变，当点击上下,改变currentRow，prop不变。</p>
+<p>所以基本思路就是：点击某个单元格，取到当前的prop和currentRow.index，当键盘事件发生，判断选中元素需要如何变化。</p>
+<h3 id="2-列表滚动"><a href="#2-列表滚动" class="headerlink" title="2.列表滚动"></a>2.列表滚动</h3><p>模糊搜索，我开始考虑选择的是elementui组件input自带的el-autocomplete输入框组件，但是思考了实际操作后，发现了一些不太好解决的问题，例如如果把el-autocomplete写在功能组件内，那么输入建议只能在功能组件这一部分内显示，很可能显示不完整，如果把el-autocomplete写在功能组件外，那么在功能组件内无法修改el-autocomplete部分的样式，又不想写到全局造成样式污染，于是决定自己写输入建议滚动框。</p>
+<p>（1）写输入建议滚动框，首先需要确定此滚动框的位置，需要跟随被选中元素，放在选中元素的下面，上网查了下，发现有一个getBoundingClientRect方法可以获得某元素相对于视口的坐标，那么只要获得了当前这个被选中元素document.activeElement的坐标，再加上一个行高，就得到了。</p>
+<p>（2）当在最后一行输入时，由于超出视口，输入建议框会看不到，此时就需要把输入建议放在被选中元素上方，如果输入建议框的bottom距底部的距离小于输入建议框的高度，那么说明底部已经放不下，就改变输入建议框的位置。</p>
+<p>（3）设置一个变量判断输入建议框是否需要显示（有数据会显示药品信息），如果显示，那么此时在监听事件里如果监听到了向上向下事件，就去操作输入建议框内的药品数据，同时根据需求滚动。</p>
+
+        <hr>
+      
+    </div>
+
+    
+
+    
+  </div>
+</article>
+
+
+    <article class="blog-post">
+  
+
+  <div class="post-content">
+    <div class="post-header">
+      
+        
+  
+    <h1 class="post-title">
+      <a href="/2021/07/14/qiankun-乾坤-框架学习总结/">
+        qiankun(乾坤)框架学习总结
+      </a>
+    </h1>
+  
+
+      
+    </div>
+    <div class="post-detail">
+      
+        <p>前段时间写项目时遇到了多产品聚合为一个系统的场景，也就是我们的微前端架构，在为公司技术选型时，我和团队选择了阿里系在用的qiankun框架，对这个框架进行了了解和研究，此篇博客记录一下学习过程。</p>
+<h3 id="选型考虑"><a href="#选型考虑" class="headerlink" title="选型考虑"></a>选型考虑</h3><p>我所理解的微前端是一种可以把多个独立的应用整合嵌套，组成一个整体的架构模式，由于是多个独立的应用，多个应用之间可以使用不同的技术栈，样式之间存在沙盒隔离。从具体实现来说，要实现用户使用时页面间的快速跳转，减少不必要的性能损耗，同时最重要的一点是子系统之间可以相互通信，且能实现代码复用。</p>
+<p>在最初技术选型时，也曾经把iframe放入过考虑的范围，后来发现qiankun框架的出现其实就是解决了iframe框架的几大痛点：<br>1.登录应用和子应用之间通信受限，具体体现在由于登录应用和子应用部署在不同的服务器，iframe框架无法通信，只能通过更改iframe的src时把token拼在地址上，子应用通过截取字符串的形式获得token。<br>2.iframe刷新缓存问题，尽管执行了刷新操作，但是iframe使用的数据仍然是旧的数据，只能考虑在地址上拼接上实时的时间戳。<br>3.登录应用无法监听到子应用的点击事件，也就是说事件冒泡无法穿透到登录应用，给用户造成头部可点击，底部不可点击的感觉。<br>4.iframe禁止第三方cookie，无法从cookie获取数据。</p>
+<h3 id="具体实现"><a href="#具体实现" class="headerlink" title="具体实现"></a>具体实现</h3><p>在考虑使用qiankun框架后，我着手做了一个demo，这里就把三个项目都放在一个代码库了，分开也是可以的。<br>1.下载qiankun框架，npm install qiankun -S<br>2.建立一个主应用main，在主应用中注册其他的微应用，主要就是确定一下访问微应用的地址</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F;main.js</span><br><span class="line">registerMicroApps([</span><br><span class="line">  &#123;</span><br><span class="line">    name: &#39;app-vue-hash&#39;,</span><br><span class="line">    entry: &#39;http:&#x2F;&#x2F;localhost:1111&#39;,</span><br><span class="line">    container: &#39;#appContainer&#39;,</span><br><span class="line">    activeRule: &#39;&#x2F;app-vue-hash&#39;,</span><br><span class="line">    props: &#123; data : &#123; store, router &#125; &#125;</span><br><span class="line">  &#125;,</span><br><span class="line">  &#123;</span><br><span class="line">    name: &#39;app-vue-hash2&#39;,</span><br><span class="line">    entry: &#39;http:&#x2F;&#x2F;localhost:2222&#39;,</span><br><span class="line">    container: &#39;#appContainer&#39;,</span><br><span class="line">    activeRule: &#39;&#x2F;app-vue-hash2&#39;,</span><br><span class="line">    props: &#123; data : &#123; store, router &#125; &#125;</span><br><span class="line">  &#125;,</span><br><span class="line">]);</span><br><span class="line"></span><br><span class="line">start();</span><br></pre></td></tr></table></figure>
+<p>当匹配到url，微应用就会被插入到容器当中。<br>微应用需要在入口文件暴露出bootstrap、mount、unmount 三个生命周期钩子，供主应用在合适的时机调用。<br>下面摘录一些官方说明：<br>bootstrap：<br>只会在微应用初始化的时候调用一次，下次微应用重新进入时会直接调用 mount 钩子，不会再重复触发 bootstrap。<br>通常我们可以在这里做一些全局变量的初始化，比如不会在 unmount 阶段被销毁的应用级别的缓存等。<br>mount：<br>应用每次进入都会调用 mount 方法，通常我们在这里触发应用的渲染方法。<br>update：<br>可选生命周期钩子，仅使用 loadMicroApp 方式加载微应用时生效。<br>3.配置微应用的打包工具</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">const packageName &#x3D; require(&#39;.&#x2F;package.json&#39;).name;</span><br><span class="line"></span><br><span class="line">module.exports &#x3D; &#123;</span><br><span class="line">  devServer: &#123;</span><br><span class="line">    port: 2222,</span><br><span class="line">    headers: &#123;</span><br><span class="line">      &#39;Access-Control-Allow-Origin&#39;: &#39;*&#39;,</span><br><span class="line">    &#125;,</span><br><span class="line">  &#125;,</span><br><span class="line">  chainWebpack: (config) &#x3D;&gt; &#123;</span><br><span class="line">    config.module</span><br><span class="line">      .rule(&#39;fonts&#39;)</span><br><span class="line">      .test(&#x2F;.(ttf|otf|eot|woff|woff2)$&#x2F;)</span><br><span class="line">      .use(&#39;url-loader&#39;)</span><br><span class="line">      .loader(&#39;url-loader&#39;)</span><br><span class="line">      .tap(options &#x3D;&gt; (&#123; name: &#39;&#x2F;fonts&#x2F;[name].[hash:8].[ext]&#39; &#125;))</span><br><span class="line">      .end()</span><br><span class="line">  &#125;,</span><br><span class="line">  &#x2F;&#x2F; 自定义webpack配置</span><br><span class="line">  configureWebpack: &#123;</span><br><span class="line">    output: &#123;</span><br><span class="line">      library: &#96;$&#123;packageName&#125;-[name]&#96;,&#x2F;&#x2F;暴露库的名称</span><br><span class="line">      libraryTarget: &#39;umd&#39;,&#x2F;&#x2F;该方案支持commonjs、commonjs2、amd，可以在浏览器、node中通用，注：要实现通用还需额外设置</span><br><span class="line">      jsonpFunction: &#96;webpackJsonp_$&#123;name&#125;&#96;,</span><br><span class="line">    &#125;,</span><br><span class="line">  &#125;,</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<p>这里主要是(1)允许跨域(2)把子应用打包成 umd 库格式，确保无论在什么情况下（上述的几种情况）都可以拿到export的生命周期<br>4.在微应用最顶端引入public-path.js</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F;public-path.js</span><br><span class="line">if (window.__POWERED_BY_QIANKUN__) &#123;</span><br><span class="line">  &#x2F;&#x2F; eslint-disable-next-line no-undef</span><br><span class="line">  __webpack_public_path__ &#x3D; window.__INJECTED_PUBLIC_PATH_BY_QIANKUN__;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>使用__webpack_public_path__此变量来判断是否在qiankun环境下</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F;微应用的main.js</span><br><span class="line">function render(&#123; data &#x3D; &#123;&#125; , container &#125; &#x3D; &#123;&#125;) &#123;</span><br><span class="line">  router &#x3D; new VueRouter(&#123;</span><br><span class="line">    routes,</span><br><span class="line">  &#125;);</span><br><span class="line">  instance &#x3D; new Vue(&#123;</span><br><span class="line">    router,</span><br><span class="line">    store,</span><br><span class="line">    data()&#123;</span><br><span class="line">      return &#123;</span><br><span class="line">        parentRouter: data.router,</span><br><span class="line">        parentVuex: data.store,</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;,</span><br><span class="line">    render: h &#x3D;&gt; h(App),</span><br><span class="line">  &#125;).$mount(container ? container.querySelector(&#39;#appVueHash&#39;) : &#39;#appVueHash&#39;);</span><br><span class="line">&#125;</span><br><span class="line">console.log(window.__POWERED_BY_QIANKUN__)</span><br><span class="line">if (!window.__POWERED_BY_QIANKUN__) &#123;</span><br><span class="line">  render();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>如果不在qiankun环境下，直接渲染render()，跟我们以前使用的vue项目一样，如果在qiankun环境下，就只把三个生命周期函数暴露出来，等待主应用调用mount的时候，渲染render(props)函数，这个props是从主应用拿到的数据，确保所有的子应用和主应用数据(store和router)是一样的。</p>
+<p>注：资源都放进src，这样会经过 webpack 处理，能统一注入 publicPath，否则在主项目中会404。</p>
+<h3 id="各应用通信"><a href="#各应用通信" class="headerlink" title="各应用通信"></a>各应用通信</h3>
+        <hr>
+      
+    </div>
+
+    
+
+    
+  </div>
+</article>
+
+
+    <article class="blog-post">
+  
+
+  <div class="post-content">
+    <div class="post-header">
+      
+        
+  
+    <h1 class="post-title">
+      <a href="/2021/05/18/前端服务器代理-proxyTable/">
+        前端服务器代理/proxyTable
+      </a>
+    </h1>
+  
+
+      
+    </div>
+    <div class="post-detail">
+      
+        <p>使用场景：当后端无法提供跨域服务，需要前端自行搭建代理服务器进行跨域<br>原理：浏览器有同源策略限制，无法跨域请求资源，因为服务器无跨域限制，此时可以搭建使用webpack提供的代理服务器去访问真实资源，代理服务器与浏览器同源。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">proxyTable: &#123;</span><br><span class="line">  &#x2F;&#x2F; 这里配置 &#39;&#x2F;api&#39; 就等价于 target , 你在链接里访问 &#x2F;api &#x3D;&#x3D;&#x3D; https:&#x2F;&#x2F;localhost:54321</span><br><span class="line">  &#39;&#x2F;api&#39;: &#123;</span><br><span class="line">    target: &#39;https:&#x2F;&#x2F;localhost:54321&#x2F;&#39;, &#x2F;&#x2F; 真是服务器的接口地址 &#x2F;&#x2F; https:&#x2F;&#x2F;localhost:54321&#x2F;json.data.json,</span><br><span class="line">    secure: true, &#x2F;&#x2F; 如果是 https ,需要开启这个选项</span><br><span class="line">    changeOrigin: true, &#x2F;&#x2F; 是否是跨域请求</span><br><span class="line">    pathRewirte: &#123;</span><br><span class="line">      &#x2F;&#x2F; 这里是追加链接,比如真是接口里包含了 &#x2F;api,就需要这样配置.</span><br><span class="line">      &#39;&#x2F;^api&#39;: &#39;api&#x2F;&#39;,</span><br><span class="line">      &#x2F;&#x2F; 等价于</span><br><span class="line">      &#x2F;&#x2F; step 1  &#x2F;api &#x3D; http:&#x2F;&#x2F;localhost:54321&#x2F;</span><br><span class="line">      &#x2F;&#x2F; step 2 &#x2F;^api &#x3D; &#x2F;api + api &#x3D;&#x3D; http:&#x2F;&#x2F;localhost:54321&#x2F;api</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line"> &#125;,</span><br></pre></td></tr></table></figure>
+<p>注：真实发布环境不起作用</p>
+<h3 id="引申问题：如果在开发中与多位后端人员共同开发（地址不同），如何设置proxy？"><a href="#引申问题：如果在开发中与多位后端人员共同开发（地址不同），如何设置proxy？" class="headerlink" title="引申问题：如果在开发中与多位后端人员共同开发（地址不同），如何设置proxy？"></a>引申问题：如果在开发中与多位后端人员共同开发（地址不同），如何设置proxy？</h3><p>思路：主要思路是去访问一个假地址，当在假地址上判断出有xx关键词，就把这个假地址重写成真正的地址</p>
+<h3 id="一、配置所有后台地址服务"><a href="#一、配置所有后台地址服务" class="headerlink" title="一、配置所有后台地址服务"></a>一、配置所有后台地址服务</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F; proxyTarget.js</span><br><span class="line">module.exports &#x3D; &#123;</span><br><span class="line">  local: &#39;http:&#x2F;&#x2F;127.0.0.1:8080&#39;, &#x2F;&#x2F; 本地</span><br><span class="line">  sit: &#39;https:&#x2F;&#x2F;xxx.com&#x2F;&#39;, &#x2F;&#x2F; sit</span><br><span class="line">  uat: &#39;http:&#x2F;&#x2F;100.xxx.xxx.xxx:8088&#x2F;&#39;, &#x2F;&#x2F; uat</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="二、新建baseUrl-js，写要访问的假地址baseUrl"><a href="#二、新建baseUrl-js，写要访问的假地址baseUrl" class="headerlink" title="二、新建baseUrl.js，写要访问的假地址baseUrl"></a>二、新建baseUrl.js，写要访问的假地址baseUrl</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F; baseUrl.js</span><br><span class="line"></span><br><span class="line">let baseURL &#x3D; &#39;&#39;</span><br><span class="line">&#x2F;&#x2F;切换地址时只需要修改此处即可</span><br><span class="line">let localPath &#x3D; &#39;local&#39; &#x2F;&#x2F; 本地</span><br><span class="line">&#x2F;&#x2F; let localPath &#x3D; &#39;sit&#39; &#x2F;&#x2F; di</span><br><span class="line">&#x2F;&#x2F; let localPath &#x3D; &#39;uat&#39; &#x2F;&#x2F; uat</span><br><span class="line"></span><br><span class="line">if (process.env.NODE_ENV &#x3D;&#x3D;&#x3D; &#39;development&#39;) &#123;</span><br><span class="line">  baseURL &#x3D; &#96;&#x2F;$&#123;localPath&#125;&#x2F;devApi&#96;</span><br><span class="line">&#125; else &#123;</span><br><span class="line">  baseURL &#x3D; &#39;&#x2F;api&#39;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">export default baseURL</span><br></pre></td></tr></table></figure>
+<h3 id="三、更改webpack-dev-conf-js中的devServer"><a href="#三、更改webpack-dev-conf-js中的devServer" class="headerlink" title="三、更改webpack.dev.conf.js中的devServer"></a>三、更改webpack.dev.conf.js中的devServer</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">const path &#x3D; require(&#39;path&#39;)</span><br><span class="line">const targets &#x3D; require(&#39;..&#x2F;proxyTarget&#39;)</span><br><span class="line"></span><br><span class="line">const proxyInfo &#x3D; (name)&#x3D;&gt;&#123;</span><br><span class="line">  return &#123;</span><br><span class="line">    target:targets[name],</span><br><span class="line">    changeOrigin:true,</span><br><span class="line">    ws:true,</span><br><span class="line">    pathRewrite:&#123;</span><br><span class="line">      [&#96;&#x2F;$&#123;name&#125;&#96;]:&#39;&#39;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line">const proxy &#x3D; &#123;&#125;;</span><br><span class="line">&#x2F;&#x2F;对每个接口地址进行处理，之后组成一个真实地址的proxy配置</span><br><span class="line">Object.keys(targets).forEach(targetName&#x3D;&gt;&#123;</span><br><span class="line">  proxy[&#96;&#x2F;$&#123;targetName&#125;&#96;] &#x3D; proxyInfo(targetName)</span><br><span class="line">  &#125;)</span><br></pre></td></tr></table></figure>
+<h3 id="四、把第三步组成的proxy配置传入"><a href="#四、把第三步组成的proxy配置传入" class="headerlink" title="四、把第三步组成的proxy配置传入"></a>四、把第三步组成的proxy配置传入</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">module.exports &#x3D; &#123;</span><br><span class="line">    dev: &#123;</span><br><span class="line">        proxyTable: proxy</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+        <hr>
+      
+    </div>
+
+    
+
+    
+  </div>
+</article>
+
+
+    <article class="blog-post">
+  
+
+  <div class="post-content">
+    <div class="post-header">
+      
+        
+  
+    <h1 class="post-title">
+      <a href="/2021/03/18/http缓存相关总结/">
+        http缓存相关总结
+      </a>
+    </h1>
+  
+
+      
+    </div>
+    <div class="post-detail">
+      
+        <p>最近在看缓存相关的东西，查阅完资料对这部分知识做个总结。</p>
+<h3 id="一、资源相关状态码与分类"><a href="#一、资源相关状态码与分类" class="headerlink" title="一、资源相关状态码与分类"></a>一、资源相关状态码与分类</h3><p>一般常见的资源返回状态码有以下几种：<br>(1)200 OK (FROM MemoryCache)：不访问服务器，直接从内存中读取缓存（一般js文件、图片都储存在内存中，因为可能频繁会用到，内存中读取比较快）<br>(2)200 OK (FROM DiskCache)：不访问服务器，直接从磁盘中读取缓存(一般非脚本文件会储存在磁盘中（如css等），因为css只加载一次就渲染出来了，不会频繁读取)<br>(3)304 (NOT MODIFIED)： 访问服务器，发现数据没有更新，服务器返回此状态码。然后从缓存中读取数据<br>一般读取缓存的顺序就是：内存-&gt;磁盘-&gt;访问服务器<br>所以http缓存一般可以分为两类：<br>1.强缓存(200 状态码)<br>2.协商缓存(304 状态码)</p>
+<h3 id="二、缓存的命中机制："><a href="#二、缓存的命中机制：" class="headerlink" title="二、缓存的命中机制："></a>二、缓存的命中机制：</h3><p>强缓存主要是浏览器先通过cache-control来判断，判断步骤是：<br>(1)首先根据cache-control和Expires进行判断<br>第一次请求这个资源时，如果服务器认为此资源可被缓存，则response headers里会返回cache-control和Expires，如果不可被缓存，则不会返回，如果同时设置的话，cache-control优先级高于Expires，返回后浏览器将它缓存到本地，此时根据情况判断缓存至内存还是磁盘<br>(2)如果有cache-control和Expires，则会根据他们的取值进行判断，例如如果有max-age需要判断max-age是否过期：<br>不过期则直接读取缓存(命中强缓存)<br>过期的话会去做协商缓存<br>(3)协商缓存：判断上次文件返回头里有没有Etag和Last-Modified（Etag是资源唯一对应的字符串，Last-Modified是资源上次修改时间，第一次请求资源时会返回，如果两个同时存在，则优先使用Etag，因为1.Last-Modified只能精确到秒级2.如果资源是重复生成但内容未变，Etag会更准确）<br>如果不存在，说明之前未请求过此资源，会向服务器发送请求，服务器返回资源<br>如果存在，说明之前已请求过此资源，同样向服务器发送请求，将If-Modify-Since和If-None-Match发送给服务器（Last-Modified对应If-Modify-Since，Etag对应If-None-Match），服务器会根据内容判断是否命中了协商缓存<br>如果命中，则返回304（资源未被修改）,且不会返回资源内容，并且不会返回Last-Modify，同时浏览器从缓存中读取资源<br>如果未命中，则返回200和资源</p>
+
+        <hr>
+      
+    </div>
+
+    
+
+    
+  </div>
+</article>
+
+
+    <article class="blog-post">
+  
+
+  <div class="post-content">
+    <div class="post-header">
+      
+        
+  
+    <h1 class="post-title">
+      <a href="/2021/02/09/移动端适配/">
+        移动端适配
+      </a>
+    </h1>
+  
+
+      
+    </div>
+    <div class="post-detail">
+      
+        <h2 id="一、flexible-js"><a href="#一、flexible-js" class="headerlink" title="一、flexible.js"></a>一、flexible.js</h2><p>dpr:设备像素比<br>物理像素:设备像素，他是显示设备中一个最微小的物理部件，实际存在<br>设备独立像素：密度无关像素，可以认为是计算机坐标系统中的一个点，这个点代表一个可以由程序使用的虚拟像素(比如说CSS像素)<br>不同的设备dpr不同，设备像素比dpr ＝ 物理像素 / 设备独立像素</p>
+<p>在Flexible中，只对iOS设备进行dpr的判断，对于Android系列，始终认为其dpr为1，font-size的基准值根据dpr设定<br>设计图上的元素px/基准值 = 页面上实际的rem</p>
+<p>1.安装lib-flexible</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install lib-flexible --save</span><br></pre></td></tr></table></figure>
+
+<p>2.全局引入lib-flexible</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F;main.js</span><br><span class="line">import &#39;lib-flexible&#x2F;flexible.js&#39;</span><br></pre></td></tr></table></figure>
+
+<p>3.删除meta name=”viewport”标签，使用lib-flexible自动生成的meta标签</p>
+<p>4.使用postcss-px2rem-exclude自动将css中的px转换成rem</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install postcss-px2rem-exclude --save</span><br></pre></td></tr></table></figure>
+
+<p>5.配置 postcss-px2rem-exclude<br>但是一般做项目的时候会引入ui库，如果不想ui库里的样式也跟着lib-flexible改变，可以使用postcss-px2rem-exclude去忽略ui库里的文件</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F;.postcssrc.js：</span><br><span class="line">module.exports &#x3D; &#123;</span><br><span class="line">  &quot;plugins&quot;: &#123;</span><br><span class="line">    &#x2F;&#x2F; to edit target browsers: use &quot;browserslist&quot; field in package.json</span><br><span class="line">    &quot;postcss-import&quot;: &#123;&#125;,</span><br><span class="line">    &quot;autoprefixer&quot;: &#123;&#125;,</span><br><span class="line">    &quot;postcss-px2rem-exclude&quot;: &#123;  &#x2F;&#x2F; 添加的代码</span><br><span class="line">      remUnit: 75,&#x2F;&#x2F;人为设置iphone6的font-size</span><br><span class="line">      exclude: &#x2F;node_modules|folder_name&#x2F;i &#x2F;&#x2F; 忽略node_modules目录下的文件</span><br><span class="line">      &#x2F;&#x2F;include - 字符串或正则表达式，只有名称匹配的组件会被匹配</span><br><span class="line">      &#x2F;&#x2F;exclude - 字符串或正则表达式，任何名称匹配的组件都不会被匹配</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>remUnit = 设计图总宽度/10</p>
+<h3 id="注意："><a href="#注意：" class="headerlink" title="注意："></a>注意：</h3><p>1.需要忽略node_modules目录下的文件，这样可以避免引入的ui库样式变形<br>2.此方法只能将.vue文件style标签中的px转成rem，不能将script标签和元素style里面定义的px转成rem<br>3.如果在.vue文件style中的某一行代码不希望被转成rem，只要在后面写上注释 /* no*/就可以了<br>4.字体不使用rem</p>
+<p>问题：<br>1.根据dpr如何设置font-size</p>
+
+        <hr>
+      
+    </div>
+
+    
+
+    
+  </div>
+</article>
+
+
+    <article class="blog-post">
+  
+
+  <div class="post-content">
+    <div class="post-header">
+      
+        
+  
+    <h1 class="post-title">
+      <a href="/2021/01/17/js运行机制相关总结/">
+        js运行机制相关总结
+      </a>
+    </h1>
+  
+
+      
+    </div>
+    <div class="post-detail">
+      
+        <p>本篇主要理解和总结一下js运行相关的微任务、宏任务、async、await和Eventloop</p>
+<p>这些出现的前提是js为单线程语言，这里的单线程是指在JS引擎中负责解释和执行JavaScript代码的线程只有一个，也叫主线程。js主要被用来与用户互动，操作dom，如果多线程去操作同一个dom容易出现问题。<br>那么cpu处理必然会出现排队等待的情况，此时任务可分为同步任务和异步任务，主线程去立即执行同步任务，形成一个执行栈。在主线程之外，有一个任务队列，当遇到异步任务时，主线程发出一个异步I/O请求，这个请求被传递给设备驱动程序，由后者负责完成实际的I/O操作，当I/O处理完之后，再将拿到结果的回调函数放到任务队列。<br>如果此任务是宏任务，放到macro task队列中，如果是微任务，放到micro task队列中。简单判断：<br>微任务：<br>1.有Promise，async，await<br>2.执行时机早，在DOM渲染前触发<br>3.是由ES6语法规定的<br>宏任务：<br>1.有setTimeout，setInterval，Ajax，DOM<br>2.执行时机晚，在DOM渲染后触发<br>3.是由浏览器W3C规定的</p>
+<p>当所有的同步任务都执行完毕后，主线程就会进入任务队列查看异步任务，每次主线程去任务队列读取异步任务的过程就是事件循环，然后异步任务进入主线程执行，这时会先执行微任务的micro task队列，尝试dom渲染，继续事件循环，执行宏任务macro task队列。</p>
+<h3 id="总结执行步骤："><a href="#总结执行步骤：" class="headerlink" title="总结执行步骤："></a>总结执行步骤：</h3><p>1.执行所有js语句，将任务分为立即执行任务和异步任务（微任务、宏任务），立即执行任务一个个入栈立即执行，执行完出栈，微任务放入微任务队列，宏任务放入宏任务队列<br>2.当所有的立即执行任务执行完毕，主线程进入任务队列查看异步任务，首先查看微任务并执行<br>3.当所有微任务执行完毕，主线程再去查看宏任务，注意：在宏任务执行过程中如果遇到微任务，将微任务放入微任务队列，当前宏任务结束后，再去查看微任务，并执行<br>4.确保所有微任务执行完毕，再去执行下一个宏任务</p>
+<h3 id="注意："><a href="#注意：" class="headerlink" title="注意："></a>注意：</h3><p>1.new定义的promise会被立即执行<br>2.async()是函数执行代码，会立即执行，then()是异步标志，会记录为微任务之后执行<br>3.await后面的代码都会作为异步回调函数来执行<br>4.setTimeout()此行代码执行时只是将事件插入了任务队列，必须等到当前代码（执行栈）执行完，主线程才会去执行它指定的回调函数。要是当前代码耗时很长，有可能要等很久，所以并没有办法保证，回调函数一定会在setTimeout()指定的时间执行</p>
+
+        <hr>
+      
+    </div>
+
+    
+
+    
+  </div>
+</article>
+
+
+    <article class="blog-post">
+  
+
+  <div class="post-content">
+    <div class="post-header">
+      
+        
+  
+    <h1 class="post-title">
+      <a href="/2020/12/29/正向、反向代理理解/">
+        正向、反向代理理解笔记
+      </a>
+    </h1>
+  
+
+      
+    </div>
+    <div class="post-detail">
+      
+        <p>首先，二者差异：<br>正向代理时客户端需要进行设置，告诉代理服务器要请求数据和去哪里请求（客户端知道自己要发送给代理服务器，客户端和代理服务器认识，客户端通过代理服务器认识服务器解决需求），反向代理时客户端正常发送请求（不知道要发送给代理服务器），由代理服务器自行判断向哪个服务器请求数据（相当于代理服务器和服务器认识，代理服务器帮服务器拉有需求的客户端）。</p>
+<h3 id="一、正向代理-Forward-Proxy"><a href="#一、正向代理-Forward-Proxy" class="headerlink" title="一、正向代理(Forward Proxy)"></a>一、正向代理(Forward Proxy)</h3><p>代理服务器C就是替代客户端A访问服务器B的一个中间服务器，客户端A向代理服务器C发送请求并指定访问的目标服务器B，代理服务器C向服务器B请求访问，并将访问到的内容返回给客户端A。<br>C替代A访问的三种可能情况：<br>1.客户端A访问服务器B时出现了故障，无法直接访问<br>2.客户端A直接访问服务器B时速率太慢，想要加速访问<br>3.由于当客户端A访问服务器B之前已经有其他用户使用代理服务器C访问过服务器B上的数据，代理服务器B就会把数据保留一段时间，在此时间段内想获得该数据都不需要再次访问，这叫做cache命中，所以，使用代理服务器可以减少访问次数。<br>4.使用代理服务器C授权用户是否有权限访问<br>5.使用代理隐藏真正访问者客户</p>
+<h3 id="二、反向代理（reverse-proxy）"><a href="#二、反向代理（reverse-proxy）" class="headerlink" title="二、反向代理（reverse proxy）"></a>二、反向代理（reverse proxy）</h3><p>客户端A想访问服务器B，并且发出了访问请求，并不知道接收到请求的是代理服务器，以为是真正服务器，当代理服务器接收到客户端的请求，根据设置自行判断要去哪个服务器上获取数据，并将访问到的内容返回给客户端A。<br>反向代理作用在于：<br>1.保护和隐藏原始资源服务器，因为客户端不知道自己访问的不是真正的服务器<br>2.负载均衡，当用户不止一个时，使用不同的代理服务器应答不同的用户，当代理服务器和客户端来自同一个网络，会获得很高质量的速度，比如CDN.</p>
+
+        <hr>
+      
+    </div>
+
+    
+
+    
+  </div>
+</article>
+
+
+    <article class="blog-post">
+  
+
+  <div class="post-content">
+    <div class="post-header">
+      
+        
+  
+    <h1 class="post-title">
+      <a href="/2020/11/13/git命令大全/">
+        git命令大全
+      </a>
+    </h1>
+  
+
+      
+    </div>
+    <div class="post-detail">
+      
+        <p>今天事情不多，对git 做一个总结，都是比较常规的用法，日常操作应该是够了<br><img src="https://img-blog.csdnimg.cn/20190426154538504.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3Nvbmdoc2lh,size_16,color_FFFFFF,t_70"></p>
+<h3 id="一、常用命令"><a href="#一、常用命令" class="headerlink" title="一、常用命令"></a>一、常用命令</h3><p>查看当前所有分支 git branch –all<br>创建dev分支，然后切换到dev分支：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git checkout -b dev</span><br></pre></td></tr></table></figure>
+<p>其中git checkout命令加上-b参数表示创建并切换，相当于以下两条命令：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git branch dev</span><br><span class="line">git checkout dev   &#x2F;&#x2F;只切换分支</span><br></pre></td></tr></table></figure>
+<p>用git branch命令查看当前所有分支：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git branch --all</span><br></pre></td></tr></table></figure>
+<p>查看当前状态：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git status</span><br></pre></td></tr></table></figure>
+
+<h3 id="二、合并别人的远程分支"><a href="#二、合并别人的远程分支" class="headerlink" title="二、合并别人的远程分支"></a>二、合并别人的远程分支</h3><p>前提：保证两个分支暂存区无内容</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">git checkout hsia   &#x2F;&#x2F;切换到hsia分支</span><br><span class="line">git pull   &#x2F;&#x2F;拉取代码</span><br><span class="line">git merge origin&#x2F;hf</span><br></pre></td></tr></table></figure>
+
+<h3 id="三、新建分支并关联到远程"><a href="#三、新建分支并关联到远程" class="headerlink" title="三、新建分支并关联到远程"></a>三、新建分支并关联到远程</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git checkout -b dev</span><br><span class="line">git push --set-upstream origin dev</span><br></pre></td></tr></table></figure>
+
+<h3 id="四、远程分支拉到本地"><a href="#四、远程分支拉到本地" class="headerlink" title="四、远程分支拉到本地"></a>四、远程分支拉到本地</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git pull origin dev</span><br></pre></td></tr></table></figure>
+
+<h3 id="五、在A分支修改的内容需要提交到B分支，且A分支不做同步"><a href="#五、在A分支修改的内容需要提交到B分支，且A分支不做同步" class="headerlink" title="五、在A分支修改的内容需要提交到B分支，且A分支不做同步"></a>五、在A分支修改的内容需要提交到B分支，且A分支不做同步</h3><p>（1）通过git stash将工作区恢复到上次提交的内容，同时备份本地所做的修改</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git stash</span><br></pre></td></tr></table></figure>
+<p>（2）然后切换至B分支</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git checkout B</span><br></pre></td></tr></table></figure>
+<p>（3）从git栈中获取到最近一次stash进去的内容，恢复工作区的内容，获取之后，会删除栈中对应的stash</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git stash pop</span><br></pre></td></tr></table></figure>
+<p>（4）进行正常的提交代码步骤即可</p>
+<h3 id="六、已有仓库连接至远程git"><a href="#六、已有仓库连接至远程git" class="headerlink" title="六、已有仓库连接至远程git"></a>六、已有仓库连接至远程git</h3><p>在本地初始化git仓库</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git init</span><br></pre></td></tr></table></figure>
+<p>新增远程仓库上游</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git remote add origin 仓库地址</span><br></pre></td></tr></table></figure>
+<p>将项目中的所有文件与文件夹增加到本地库</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git add .</span><br></pre></td></tr></table></figure>
+<p>提交</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git commit -m 描述</span><br></pre></td></tr></table></figure>
+<p>上传至远程仓库</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git push --set-upstream origin master</span><br></pre></td></tr></table></figure>
+<p>完成，至此项目已推送至远程，并且本地与远程仓库建立了连接。</p>
+<h3 id="七、使用https方式克隆远程https库时，出现了每次进行git操作都要验证账号密码的情况"><a href="#七、使用https方式克隆远程https库时，出现了每次进行git操作都要验证账号密码的情况" class="headerlink" title="七、使用https方式克隆远程https库时，出现了每次进行git操作都要验证账号密码的情况"></a>七、使用https方式克隆远程https库时，出现了每次进行git操作都要验证账号密码的情况</h3><p>原因是在添加远程库的时候使用了https的方式，所以每次都要用https的方式操作远程库<br>解决方案：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"># 查看使用的传输协议:</span><br><span class="line">git remote -v</span><br></pre></td></tr></table></figure>
+<p>origin <a target="_blank" rel="noopener" href="https://github.com/XXXX/XXXX.git">https://github.com/XXXX/XXXX.git</a> (fetch)<br>origin <a target="_blank" rel="noopener" href="https://github.com/XXXX/XXXX.git">https://github.com/XXXX/XXXX.git</a> (push)<br>此时可以确定是https传输<br>重新设置成ssh的方式:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">git remote rm origin</span><br><span class="line">git remote add origin ssh地址</span><br><span class="line">git push -u origin 分支名</span><br></pre></td></tr></table></figure>
+<p>设置好了之后再看当前传输协议：<br>origin <a href="mailto:&#103;&#x69;&#x74;&#64;&#x67;&#105;&#x74;&#104;&#x75;&#98;&#46;&#x63;&#111;&#x6d;">&#103;&#x69;&#x74;&#64;&#x67;&#105;&#x74;&#104;&#x75;&#98;&#46;&#x63;&#111;&#x6d;</a>:XXXX/XXXX.git (fetch)<br>origin <a href="mailto:&#103;&#105;&#116;&#x40;&#x67;&#105;&#116;&#x68;&#117;&#x62;&#46;&#99;&#111;&#x6d;">&#103;&#105;&#116;&#x40;&#x67;&#105;&#116;&#x68;&#117;&#x62;&#46;&#99;&#111;&#x6d;</a>:XXXX/XXXX.git (push)<br>已经变成ssh方式</p>
+<p>同时推荐一下使用的脑图软件：MindMaster ，非常好用</p>
+
+        <hr>
+      
+    </div>
+
+    
+
+    
+  </div>
+</article>
+
+
+
+
+    </main>
+    
+    <div class="back-to-top" id="back-to-top"><i class="fas fa-arrow-alt-circle-up fa-2x"></i></div>
+
+    <footer class="blog-footer">
+  
+
+
+  
+
+ 
+  <!-- <div class="blog-footer-copyright">
+  <p class="copyright">Copyright © 2018 Hsiacool. Powered by <a target="_blank" rel="noopener" href="https://hexo.io/">Hexo</a> and <a target="_blank" rel="noopener" href="https://github.com/Kexin-Li/hexo-theme-cicada">Cicada</a>. <iframe src="https://ghbtns.com/github-btn.html?user=Kexin-Li&repo=hexo-theme-cicada&type=star&count=false&size=small" frameborder="0" scrolling="0" width="58px" height="30px" style="margin-bottom: -15px"></iframe></p>
+</div> -->
+
+</footer>
+
+<script type="text/javascript" src="/lib/jquery/jquery.min.js"></script>
+
+
+  <script type="text/javascript" src="/lib/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<!--  -->
+
+
+
+
+<script type="text/javascript" src="/js/cicada.js"></script>
+  </body>
+</html>

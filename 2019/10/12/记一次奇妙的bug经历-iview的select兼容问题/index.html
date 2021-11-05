@@ -1,0 +1,185 @@
+
+
+<html lang="zh-CN">
+  <head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  <meta http-equiv="Cache-Control" content="no-transform" />
+  <meta http-equiv="Cache-Control" content="no-siteapp" />
+
+  <meta name="theme-color" content="#42dbbc" />
+  <meta name="msapplication-navbutton-color" content="#f8f5ec" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec" />
+
+  
+  
+  
+    <link rel="shortcut icon" type="image/x-icon" href="/images/favicon.ico" />
+  
+
+  <title>Hsiacool&#39;blog</title>
+
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.1.0/css/all.css" integrity="sha384-lKuwvrZot6UHsBSfcMvOkWwlCMgc0TaWr+30HWe3a4ltaBwTZhyTEggF5tJv8tbt" crossorigin="anonymous">
+
+  
+    <link rel="stylesheet" type="text/css" href="/lib/fancybox/jquery.fancybox.css" />
+  
+
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/atom-one-light.min.css">
+
+  
+<link rel="stylesheet" href="/css/style.css">
+
+
+  
+
+  <script>
+    window.config = {"favicon":"/images/favicon.ico","language":"zh-CN","menu":{"home":"/","archives":"/archives","tags":"/tags","categories":"/categories"},"show_tag":true,"show_category":true,"highlight":"atom-one-light","excerpt_link":"Read More","fancybox":true,"disqus_shortname":null,"rss":"default","google_analytics":null,"portfolio":{"subtitle":"Some Works","cards":{"card1":{"cover":"/images/screenshot.png","content":"Cicada is a concise and retro Hexo theme.","link":"https://github.com/Kexin-Li/hexo-theme-cicada"},"card2":{"cover":"/images/screenshot.png","content":"Cicada is a Hexo theme, it tastes like summer.","link":"http://kexin-li.github.io"},"card3":{"cover":"/images/screenshot.png","content":"Cicada is a Hexo theme, it tastes like summer.","link":"http://kexin-li.github.io"}}},"about":null,"subtitle":"About Me","poem":false};
+  </script>
+<meta name="generator" content="Hexo 5.4.0"></head>
+  <body>
+    
+
+<header class="blog-slide" style="height: px">
+  <nav class="blog-header">
+    <a class="mobile toggle-button"><i class="fas fa-bars fa-lg"></i></a>
+    <ul>
+      <li class="title"><a href="/">Hsiacool&#39;blog</a></li>
+      
+        <li class="nav-item"><a href="/">首页</a></li>
+      
+        <li class="nav-item"><a href="/archives">归档</a></li>
+      
+        <li class="nav-item"><a href="/tags">标签</a></li>
+      
+        <li class="nav-item"><a href="/categories">分类</a></li>
+      
+    </ul>
+  </nav>
+  <h1 class="subtitle"><span id='jinrishici-sentence'>Think twice,code once.</span></h1>
+</header>
+
+    <nav id="menu">
+  
+    <a href="/">首页</a>
+  
+    <a href="/archives">归档</a>
+  
+    <a href="/tags">标签</a>
+  
+    <a href="/categories">分类</a>
+  
+</nav>
+    
+    <main class="blog-main" style="margin-top: -150px">
+      <article class="blog-post">
+  
+
+  <div class="post-content">
+    <div class="post-header">
+      
+        
+  
+    <h1 class="post-title">
+      <a href="/2019/10/12/记一次奇妙的bug经历-iview的select兼容问题/">
+        记一次奇妙的bug经历---iview的select兼容问题
+      </a>
+    </h1>
+  
+
+<div class="post-meta">
+  2019-10-12
+  
+  
+    
+
+
+  
+</div>
+
+      
+    </div>
+    <div class="post-detail">
+      
+        <p>这个bug是iview插件的兼容问题。</p>
+<pre><code>    代码被注释，可能是兼容问题！
+
+
+
+    事情是这样的，某天我司的运维人员带着我们的系统去现场部署，然后他跟我说，现场屏幕太小，咱们那个筛选功能看不见啦，用不了。我虎躯一震，刚上的功能竟然有问题，那还得了，让他发图给我，发现是看不到我的下拉框按钮了，我赶紧打开本地，选择了同样的分辨率和大小，what?可以用啊，这就有点诡异了。
+
+    经过一系列查找，终于发现问题了，同样的一份代码，四台电脑，三台不可用，一台可用，可用的电脑上F12查看代码正常，而不可用的电脑上------居然看到我的下拉框被注释了！并且同样的两个下拉框，一个被注释，一个正常！作为一个小菜鸡，我震惊了，跟运维确认确实是一份代码，四台电脑访问的都是同一个网址，我懵了，实在想不明白为什么我的代码会被注释掉。
+
+    问了很多朋友什么情况下vue代码会被注释，无解，最后同事提了一个想法，会不会是插件不支持自己注释的？那么第二个怎么可以呢？这是个思路，但我还不敢确定。
+
+    好在还有其他电脑可以使用，第二次去部署时我让同事把四台电脑的浏览器版本带回来，发现可用的电脑版本是谷歌49，其他一个是43，一个是40，一个是39，这下心里有数了，查了一下关于iview兼容性的问题，发现别人的博客里有提及过iview的select完全消失的问题，于是下了一个43版本的浏览器，火速引入了element ui进行替换，成功，真相大白。
+
+  真正解决了之后觉得还行，但是发现问题的当天真的是百思不得其解，所以说解决问题还是要从异常情况的自身入手。但可惜的是，最后也不知道为什么第一个下拉框不可以第二个下拉框可以，记录一下。
+</code></pre>
+
+        <hr>
+      
+    </div>
+
+    
+      
+    
+
+    
+      
+  
+  
+  <div class="post-tags">
+    <a href="/tags/兼容/">#兼容</a>
+  </div>
+  <hr>
+  
+
+      <div class="post-more">
+  
+    <div class="post-pre">
+      <span>上一篇</span>
+      <a href="/2020/03/02/%E6%89%8B%E6%9C%BA%E7%AB%AFios%E5%BC%B9%E5%87%BA%E9%94%AE%E7%9B%98%E5%86%8D%E6%94%B6%E8%B5%B7%E5%90%8E%E8%83%8C%E6%99%AF%E5%9B%BE%E8%A2%AB%E9%A1%B6%E8%B5%B7%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/">手机端ios弹出键盘再收起后背景图被顶起解决方案</a>
+    </div>
+  
+  
+</div>
+      
+    
+  </div>
+</article>
+
+    </main>
+    
+    <div class="back-to-top" id="back-to-top"><i class="fas fa-arrow-alt-circle-up fa-2x"></i></div>
+
+    <footer class="blog-footer">
+  
+
+
+  
+
+ 
+  <!-- <div class="blog-footer-copyright">
+  <p class="copyright">Copyright © 2018 Hsiacool. Powered by <a target="_blank" rel="noopener" href="https://hexo.io/">Hexo</a> and <a target="_blank" rel="noopener" href="https://github.com/Kexin-Li/hexo-theme-cicada">Cicada</a>. <iframe src="https://ghbtns.com/github-btn.html?user=Kexin-Li&repo=hexo-theme-cicada&type=star&count=false&size=small" frameborder="0" scrolling="0" width="58px" height="30px" style="margin-bottom: -15px"></iframe></p>
+</div> -->
+
+</footer>
+
+<script type="text/javascript" src="/lib/jquery/jquery.min.js"></script>
+
+
+  <script type="text/javascript" src="/lib/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<!--  -->
+
+
+
+
+<script type="text/javascript" src="/js/cicada.js"></script>
+  </body>
+</html>

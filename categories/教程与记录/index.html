@@ -1,0 +1,344 @@
+
+
+<html lang="zh-CN">
+  <head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  <meta http-equiv="Cache-Control" content="no-transform" />
+  <meta http-equiv="Cache-Control" content="no-siteapp" />
+
+  <meta name="theme-color" content="#42dbbc" />
+  <meta name="msapplication-navbutton-color" content="#f8f5ec" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec" />
+
+  
+  
+  
+    <link rel="shortcut icon" type="image/x-icon" href="/images/favicon.ico" />
+  
+
+  <title>Hsiacool&#39;blog</title>
+
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.1.0/css/all.css" integrity="sha384-lKuwvrZot6UHsBSfcMvOkWwlCMgc0TaWr+30HWe3a4ltaBwTZhyTEggF5tJv8tbt" crossorigin="anonymous">
+
+  
+    <link rel="stylesheet" type="text/css" href="/lib/fancybox/jquery.fancybox.css" />
+  
+
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/atom-one-light.min.css">
+
+  
+<link rel="stylesheet" href="/css/style.css">
+
+
+  
+
+  <script>
+    window.config = {"favicon":"/images/favicon.ico","language":"zh-CN","menu":{"home":"/","archives":"/archives","tags":"/tags","categories":"/categories"},"show_tag":true,"show_category":true,"highlight":"atom-one-light","excerpt_link":"Read More","fancybox":true,"disqus_shortname":null,"rss":"default","google_analytics":null,"portfolio":{"subtitle":"Some Works","cards":{"card1":{"cover":"/images/screenshot.png","content":"Cicada is a concise and retro Hexo theme.","link":"https://github.com/Kexin-Li/hexo-theme-cicada"},"card2":{"cover":"/images/screenshot.png","content":"Cicada is a Hexo theme, it tastes like summer.","link":"http://kexin-li.github.io"},"card3":{"cover":"/images/screenshot.png","content":"Cicada is a Hexo theme, it tastes like summer.","link":"http://kexin-li.github.io"}}},"about":null,"subtitle":"About Me","poem":false};
+  </script>
+<meta name="generator" content="Hexo 5.4.0"></head>
+  <body>
+    
+
+<header class="blog-slide" style="height: px">
+  <nav class="blog-header">
+    <a class="mobile toggle-button"><i class="fas fa-bars fa-lg"></i></a>
+    <ul>
+      <li class="title"><a href="/">Hsiacool&#39;blog</a></li>
+      
+        <li class="nav-item"><a href="/">首页</a></li>
+      
+        <li class="nav-item"><a href="/archives">归档</a></li>
+      
+        <li class="nav-item"><a href="/tags">标签</a></li>
+      
+        <li class="nav-item"><a href="/categories">分类</a></li>
+      
+    </ul>
+  </nav>
+  <h1 class="subtitle"><span id='jinrishici-sentence'>CATEGORY: 教程与记录</span></h1>
+</header>
+
+    <nav id="menu">
+  
+    <a href="/">首页</a>
+  
+    <a href="/archives">归档</a>
+  
+    <a href="/tags">标签</a>
+  
+    <a href="/categories">分类</a>
+  
+</nav>
+    
+    <main class="blog-main" style="margin-top: -150px">
+      
+    <article class="blog-post">
+  
+
+  <div class="post-content">
+    <div class="post-header">
+      
+        
+  
+    <h1 class="post-title">
+      <a href="/2021/02/24/vue项目踩坑实录/">
+        vue项目踩坑实录
+      </a>
+    </h1>
+  
+
+      
+    </div>
+    <div class="post-detail">
+      
+        <h3 id="1-项目中使用了sass，然而在进行打包时未成功，报错显示-unknown-word"><a href="#1-项目中使用了sass，然而在进行打包时未成功，报错显示-unknown-word" class="headerlink" title="1.项目中使用了sass，然而在进行打包时未成功，报错显示 unknown word"></a>1.项目中使用了sass，然而在进行打包时未成功，报错显示 unknown word</h3><p>经查，写代码时不小心使用了//注释方式，经过webpack.prod.config.js的代码压缩，就造成了语法错误的情况，代码里尽量不要使用//这种注释方法</p>
+<h3 id="2-图片放到线上发现无法显示"><a href="#2-图片放到线上发现无法显示" class="headerlink" title="2.图片放到线上发现无法显示"></a>2.图片放到线上发现无法显示</h3><p>1.图片路径的问题，可以查一下打包文件build/utils.js里的publicPath问题<br>2.访问路径的问题，查一下config/index.js文件，可能是文件层级问题，将绝对路径assetsPublicPath: ‘/‘改为相对路径assetsPublicPath: ‘./‘</p>
+<h3 id="3-webpack打包去掉console-log"><a href="#3-webpack打包去掉console-log" class="headerlink" title="3.webpack打包去掉console.log"></a>3.webpack打包去掉console.log</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F;webpack.prod.conf.js</span><br><span class="line">new UglifyJsPlugin(&#123;</span><br><span class="line">  uglifyOptions: &#123;</span><br><span class="line">    compress: &#123;</span><br><span class="line">      warnings: false,</span><br><span class="line">      drop_debugger: true,</span><br><span class="line">      drop_console: true &#x2F;&#x2F;更改此行为true</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;,</span><br><span class="line">  sourceMap: config.build.productionSourceMap,</span><br><span class="line">  parallel: true</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+
+<h3 id="4-当页面中有定时器时，离开页面需要手动销毁定时器"><a href="#4-当页面中有定时器时，离开页面需要手动销毁定时器" class="headerlink" title="4.当页面中有定时器时，离开页面需要手动销毁定时器"></a>4.当页面中有定时器时，离开页面需要手动销毁定时器</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">const getNow &#x3D; setInterval(() &#x3D;&gt;&#123;</span><br><span class="line">    setTimeout(function()&#123;</span><br><span class="line">      that.getNowTime();</span><br><span class="line">    &#125;,0)</span><br><span class="line">&#125;, 1000);</span><br><span class="line">that.$once(&#39;hook:beforeDestroy&#39;, () &#x3D;&gt; &#123;</span><br><span class="line">    clearInterval(getNow);</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+
+<h3 id="5-vue-cli2和vue-cli3的区别"><a href="#5-vue-cli2和vue-cli3的区别" class="headerlink" title="5.vue-cli2和vue-cli3的区别"></a>5.vue-cli2和vue-cli3的区别</h3><p>1.包名称由vue-cli改成了@vue/cli<br>2.vue-cli3继承了webpack，使用vue-cli3创建的项目在配置webpack的时候可以直接在vue.config.js里面配置</p>
+<h3 id="6-项目中引入了node-sass，后和同事统一了node版本，项目报错"><a href="#6-项目中引入了node-sass，后和同事统一了node版本，项目报错" class="headerlink" title="6.项目中引入了node-sass，后和同事统一了node版本，项目报错"></a>6.项目中引入了node-sass，后和同事统一了node版本，项目报错</h3><p>原因：node-sass依赖于node，故更新node也要更新node-sass<br>这里记录一下node-sass，sass-loader，style-loader三个的关系：<br>sass-loader：加载sass/scss, 并且把sass/scss编译成css,依赖于node-sass,所以使用时要先下载node-sass<br>style-loader（官方封装了vue-style-loader）：将JS字符串生成为style节点、将样式插入到style标签<br>css-loader（自带）：将CSS转化成CommonJS模块，例如url转为require等</p>
+<h3 id="7-配置404页面"><a href="#7-配置404页面" class="headerlink" title="7.配置404页面"></a>7.配置404页面</h3><p>需要注意放在所有路由的最后</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">path: &#39;*&#39;,</span><br><span class="line">name: &#39;404&#39;,</span><br><span class="line">component: () &#x3D;&gt; import(&#39;..&#x2F;views&#x2F;404.vue&#39;)</span><br></pre></td></tr></table></figure>
+
+<h3 id="8-切换路由时，要把之前页面的内容留存"><a href="#8-切换路由时，要把之前页面的内容留存" class="headerlink" title="8.切换路由时，要把之前页面的内容留存"></a>8.切换路由时，要把之前页面的内容留存</h3><p>1.使用keep-alive<br>2.在beforeRouteLeave里进行处理</p>
+
+        <hr>
+      
+    </div>
+
+    
+
+    
+  </div>
+</article>
+
+
+    <article class="blog-post">
+  
+
+  <div class="post-content">
+    <div class="post-header">
+      
+        
+  
+    <h1 class="post-title">
+      <a href="/2021/01/23/小程序自定义topbar记录/">
+        小程序自定义tabbar记录
+      </a>
+    </h1>
+  
+
+      
+    </div>
+    <div class="post-detail">
+      
+        <p>整体思路是先定义自定义模式，后将自定义的那部分作为组件呈现<br>1.首先需要在全局先注册自定义tabbar,自定义模式”custom”: true,其他所需参数补齐</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F;app.json</span><br><span class="line">&quot;tabBar&quot;: &#123;</span><br><span class="line">    &quot;custom&quot;: true,</span><br><span class="line">    &quot;color&quot;: &quot;#555555&quot;,</span><br><span class="line">    &quot;selectedColor&quot;: &quot;#336DFF&quot;,</span><br><span class="line">    &quot;backgroundColor&quot;: &quot;#fff&quot;,</span><br><span class="line">    &quot;list&quot;: [</span><br><span class="line">      &#123;</span><br><span class="line">      &quot;pagePath&quot;: &quot;pages&#x2F;index&#x2F;index&quot;,</span><br><span class="line">      &quot;iconPath&quot;: &quot;images&#x2F;common&#x2F;home.png&quot;,</span><br><span class="line">      &quot;selectedIconPath&quot;: &quot;images&#x2F;common&#x2F;home-active.png&quot;,</span><br><span class="line">      &quot;text&quot;: &quot;首页&quot;</span><br><span class="line">      &#125;,</span><br><span class="line">      &#123;</span><br><span class="line">        &quot;pagePath&quot;: &quot;pages&#x2F;index&#x2F;index&quot;,</span><br><span class="line">        &quot;text&quot;: &quot;组件&quot;</span><br><span class="line">        &#125;,</span><br><span class="line">      &#123;</span><br><span class="line">        &quot;pagePath&quot;: &quot;pages&#x2F;mine&#x2F;index&quot;,</span><br><span class="line">        &quot;iconPath&quot;: &quot;images&#x2F;common&#x2F;mine.png&quot;,</span><br><span class="line">        &quot;selectedIconPath&quot;: &quot;images&#x2F;common&#x2F;mine-active.png&quot;,</span><br><span class="line">        &quot;text&quot;: &quot;接口&quot;</span><br><span class="line">      &#125;</span><br><span class="line">    ]</span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure>
+<p>  2.根目录下新建custom-tab-bar，使用组件形式自定义tabbar</p>
+<h3 id="出现的问题"><a href="#出现的问题" class="headerlink" title="出现的问题"></a>出现的问题</h3><p>  1.点击tabbar的时候图标闪烁，不能及时切换的问题，此时需要在每个tab点击后要到达的页面写上以下代码，重新去确定selected<br>  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"> onShow()&#123;</span><br><span class="line">  if (typeof this.getTabBar &#x3D;&#x3D;&#x3D; &#39;function&#39; &amp;&amp; this.getTabBar()) &#123;</span><br><span class="line">    this.getTabBar().setData(&#123;</span><br><span class="line">      selected: 0&#x2F;&#x2F;这里是本页面在tabbar实例中的index</span><br><span class="line">    &#125;)</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><br>2.在实际写项目的时候，出现了使用wx.navigateTo或navigate标签跳转层级过深，出现无法跳转的情况，这是由于小程序本身限制，层级不可超过10栈<br>解决方案：可以使用wx.navigateBack退回上级目录，减少栈的增加<br>注：使用navigator标签跳转的时候要注意跳到什么页面，open-type默认值是navigate，无法跳到switchTab页面，需要修改open-type值</p>
+
+        <hr>
+      
+    </div>
+
+    
+
+    
+  </div>
+</article>
+
+
+    <article class="blog-post">
+  
+
+  <div class="post-content">
+    <div class="post-header">
+      
+        
+  
+    <h1 class="post-title">
+      <a href="/2020/12/11/小程序项目踩坑实录/">
+        小程序项目踩坑实录
+      </a>
+    </h1>
+  
+
+      
+    </div>
+    <div class="post-detail">
+      
+        <h3 id="1-拼接字符串转时间戳，设备不同方法不同"><a href="#1-拼接字符串转时间戳，设备不同方法不同" class="headerlink" title="1.拼接字符串转时间戳，设备不同方法不同"></a>1.拼接字符串转时间戳，设备不同方法不同</h3><p>在pc和android上以’-‘拼接，在ios上以’/‘拼接</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">if (that.data.systemInfo.platform &#x3D;&#x3D; &quot;ios&quot;) &#123;</span><br><span class="line">  var q &#x3D; that.data.year + &#39;&#x2F;&#39; + that.data.month + &#39;&#x2F;&#39; + that.data.day + &#39; &#39; + that.data.timestamp;</span><br><span class="line">&#125; else &#123;</span><br><span class="line">  var q &#x3D; that.data.year + &#39;-&#39; + that.data.month+ &#39;-&#39; + that.data.day+ &#39; &#39; + that.data.timestamp;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+        <hr>
+      
+    </div>
+
+    
+
+    
+  </div>
+</article>
+
+
+    <article class="blog-post">
+  
+
+  <div class="post-content">
+    <div class="post-header">
+      
+        
+  
+    <h1 class="post-title">
+      <a href="/2020/12/02/非spa应用列表页跳转详情页后再返回列表页位置不变/">
+        非spa应用列表页跳转详情页后再返回列表页位置不变
+      </a>
+    </h1>
+  
+
+      
+    </div>
+    <div class="post-detail">
+      
+        <p>这篇博客主要记录一下在写非spa应用时对列表页跳转详情页后再返回列表页位置不变这个需求的一些思考。</p>
+<p>最近给公司写项目，涉及到一个很常见的问题，那就是列表页跳转详情页之后怎么保证列表页一切不变，数据不变，位置不变？单页面应用当然很好解决，把详情页写成子路由，监控路由，返回时销毁子页面就可以了，那么如果不是单页面应用呢？我司目前这个项目是html+css+jquery,并且一个页面里有左右滑动的列表（有很多大分类），还有查看更多的按钮，查了很多资料，大概有两种比较好的方法：<br>（1）当点击每条列表时向sessionStorage里存入当前选中的item（某个分类）、滚动条滑动的距离，目前加载了的条数，当返回列表页时，取出sessionStorage里的这些值，重新获取数据然后scrollTop定位到之前的位置，一个不太好操作的是，我们必须等到数据全部加载完成再scrollTop定位，即</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">setTimeout（function&#123;</span><br><span class="line">    &#x2F;&#x2F;scrollTop(h)</span><br><span class="line">&#125;,time）</span><br></pre></td></tr></table></figure>
+<p>如果之前加载了很多很多数据，time写多少就很难控制。<br>（2）一个推荐的方法，我在写的时候觉得单页面应用处理这个问题的思路特别好，就想非单页面是否能使用同样的思路解决问题，于是我想到了使用弹出iframe层覆盖原列表页面，但当在详情页时，如果点击返回，就无法返回列表页，而是返回了列表页的前一页，（因为现在还是在列表页，详情页只是一个弹出层），如何让看详情页时点击浏览器的返回按钮只关闭弹窗不后退呢，这时我想到了锚点，由于在网址后添加#不会出现网页的重新加载，就实现了我们只关闭详情页不加载列表页数据的想法，搜了一下，解决办法如下：<br>结构改为：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;a href&#x3D;&#39;javascript:void(0)&#39; data-href&#x3D;&quot;&#123;&#123;LinkUrl&#125;&#125;&quot;&gt;&lt;&#x2F;a&gt;</span><br></pre></td></tr></table></figure>
+<p>在点击每条列表时存下要跳转的地址，使用window.location.hash增加一个浏览记录，替代当前详情页，（#后面加什么都可以，只是为了占一个浏览记录），使用layer弹出iframe层，即到了详情页</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">$(&#39;.m-list a&#39;).click(function()&#123;</span><br><span class="line">  var u &#x3D; $(this).data(&#39;href&#39;);</span><br><span class="line">  window.location.hash &#x3D; &quot;#&quot;+u;</span><br><span class="line">  layer.open(&#123;</span><br><span class="line">    type: 2,</span><br><span class="line">    area: [&#39;100%&#39;, &#39;100%&#39;],</span><br><span class="line">    content: u</span><br><span class="line">  &#125;);</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<p>返回时，点击浏览器返回按钮</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$(window).on(&#39;popstate&#39;, function () &#123;</span><br><span class="line">  parent.layer.closeAll();</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<p>当地址变化时触发关闭layer弹出层的操作，回到了列表页的界面。</p>
+<h4 id="但这个不能用在iframe层，不兼容。"><a href="#但这个不能用在iframe层，不兼容。" class="headerlink" title="但这个不能用在iframe层，不兼容。"></a>但这个不能用在iframe层，不兼容。</h4>
+        <hr>
+      
+    </div>
+
+    
+
+    
+  </div>
+</article>
+
+
+    <article class="blog-post">
+  
+
+  <div class="post-content">
+    <div class="post-header">
+      
+        
+  
+    <h1 class="post-title">
+      <a href="/2020/10/30/daoVoice安装笔记/">
+        daoVoice安装笔记
+      </a>
+    </h1>
+  
+
+      
+    </div>
+    <div class="post-detail">
+      
+        <p>daoVoice是一款客服沟通运营平台，给公司官网加客服，接触了一下daoVoice，操作简单方便，注册用户 5000 位以内免费。</p>
+<p>参考资料：<br>Api：<a target="_blank" rel="noopener" href="http://docs.daovoice.io/api/">daoVoice’s api</a><br>官方指导文档：<a target="_blank" rel="noopener" href="http://guide.daocloud.io/dcs">daoVoice 官方指导文档</a></p>
+<p>接入：<br>一、注册一个新账号 <a target="_blank" rel="noopener" href="http://dashboard.daovoice.io/get-started">daoVoice注册新账号</a></p>
+<p><img src="https://img-blog.csdnimg.cn/20210207160357657.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3Nvbmdoc2lh,size_16,color_FFFFFF,t_70"><br>二、安装并接入 <a target="_blank" rel="noopener" href="http://guide.daocloud.io/daovoice/%E5%BF%AB%E9%80%9F%E5%AE%89%E8%A3%85-5871096.html">安装手册</a></p>
+<p><img src="https://img-blog.csdnimg.cn/20210207160411859.png" alt="快速接入"><br>将生成的代码写在所要添加daovoice页面的</head>标签之前，马赛克处是不同开发者项目的appId（页面自动生成）<br>三、调用下面的daovoice代码进行初始化，对客户的不同登录状态进行不同回复的设置</p>
+<p>ejs写法：<br><img src="https://img-blog.csdnimg.cn/2021020716044083.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3Nvbmdoc2lh,size_16,color_FFFFFF,t_70" alt="ejs写法"></p>
+<p>判断用户是否登陆，登陆就初始化项目的appId，同时存入用户的Id、email和mobile，未登录就只初始化项目的appId<br>其中app_id和user_id为必填项，email便于与用户沟通<br>四、开启项目，连接成功</p>
+<p>使用：<br>1.客服人员进入后台即可与客户进行即时沟通<br>2.对于未登录游客会自动回复，同时页面上出现一个请客户留下联系方式的弹框，不会流失任何一个有需求的客户。</p>
+<p>整个操作简单方便不耗时，非常适合产品类网站建设。</p>
+
+        <hr>
+      
+    </div>
+
+    
+
+    
+  </div>
+</article>
+
+
+    <article class="blog-post">
+  
+
+  <div class="post-content">
+    <div class="post-header">
+      
+        
+  
+    <h1 class="post-title">
+      <a href="/2020/03/13/国际化中英文切换/">
+        国际化中英文切换
+      </a>
+    </h1>
+  
+
+      
+    </div>
+    <div class="post-detail">
+      
+        <p>公司做的系统终于要走出国门了！于是我写了一套英文版系统，使用vue-i18n插件，ui库为element,现在把坑和步骤记录一下。</p>
+<p>一、下载插件</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install vue-i18n --save</span><br></pre></td></tr></table></figure>
+<p>二、把i18n配置之后导出挂载在Vue下</p>
+<p>建立一个i18n文件夹，index.js写配置,config写语言包。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F;en.js</span><br><span class="line">import enLocale from &#39;element-ui&#x2F;lib&#x2F;locale&#x2F;lang&#x2F;en&#39;</span><br><span class="line">const en &#x3D; &#123;</span><br><span class="line">  select:&#39;Please select&#39;,</span><br><span class="line">  ...enLocale</span><br><span class="line">&#125;</span><br><span class="line">export default en;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">import zhLocale from &#39;element-ui&#x2F;lib&#x2F;locale&#x2F;lang&#x2F;zh-CN&#39;</span><br><span class="line">const zh &#x3D; &#123;</span><br><span class="line">  select:&#39;请选择&#39;,</span><br><span class="line">  ...zhLocale</span><br><span class="line">&#125;</span><br><span class="line">export default zh;</span><br></pre></td></tr></table></figure>
+<p>其中…enLocale和…zhLocale是引入element的语言包。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F;index.js</span><br><span class="line">import Vue from &#39;vue&#39;;</span><br><span class="line">import VueI18n from &#39;vue-i18n&#39;;</span><br><span class="line">Vue.use(VueI18n);</span><br><span class="line">import ElementLocale from &#39;element-ui&#x2F;lib&#x2F;locale&#39;;</span><br><span class="line">&#x2F;&#x2F; 引入各个语言配置文件</span><br><span class="line">import zh from &#39;.&#x2F;config&#x2F;zh&#39;;</span><br><span class="line">import en from &#39;.&#x2F;config&#x2F;en&#39;;</span><br><span class="line">&#x2F;&#x2F; 创建vue-i18n实例i18n</span><br><span class="line">const i18n &#x3D; new VueI18n(&#123;</span><br><span class="line">    &#x2F;&#x2F; 设置默认语言</span><br><span class="line">    locale: localStorage.getItem(&#39;locale&#39;) || &#39;zh&#39;, &#x2F;&#x2F; 语言标识</span><br><span class="line">    messages: &#123;</span><br><span class="line">        zh,</span><br><span class="line">        en,</span><br><span class="line">    &#125;,</span><br><span class="line">&#125;)</span><br><span class="line">ElementLocale.i18n((key, value) &#x3D;&gt; i18n.t(key, value))</span><br><span class="line">&#x2F;&#x2F; 暴露i18n</span><br><span class="line">export default i18n;</span><br></pre></td></tr></table></figure>
+<p>结束。</p>
+
+        <hr>
+      
+    </div>
+
+    
+
+    
+  </div>
+</article>
+
+
+
+
+    </main>
+    
+    <div class="back-to-top" id="back-to-top"><i class="fas fa-arrow-alt-circle-up fa-2x"></i></div>
+
+    <footer class="blog-footer">
+  
+
+
+  
+
+ 
+  <!-- <div class="blog-footer-copyright">
+  <p class="copyright">Copyright © 2018 Hsiacool. Powered by <a target="_blank" rel="noopener" href="https://hexo.io/">Hexo</a> and <a target="_blank" rel="noopener" href="https://github.com/Kexin-Li/hexo-theme-cicada">Cicada</a>. <iframe src="https://ghbtns.com/github-btn.html?user=Kexin-Li&repo=hexo-theme-cicada&type=star&count=false&size=small" frameborder="0" scrolling="0" width="58px" height="30px" style="margin-bottom: -15px"></iframe></p>
+</div> -->
+
+</footer>
+
+<script type="text/javascript" src="/lib/jquery/jquery.min.js"></script>
+
+
+  <script type="text/javascript" src="/lib/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<!--  -->
+
+
+
+
+<script type="text/javascript" src="/js/cicada.js"></script>
+  </body>
+</html>
